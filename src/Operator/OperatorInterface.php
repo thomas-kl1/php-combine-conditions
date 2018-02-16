@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2018 Uniwax, All right reserved.
+ * Copyright © 2018 Thomas Klein, All right reserved.
  */
 
 namespace LogicTree\Operator;
