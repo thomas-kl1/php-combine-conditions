@@ -1,0 +1,36 @@
+{
+    "name": "tklein/php-combine-conditions",
+    "description": "Generic representation of conditional structure/tree library for PHP.",
+    "type": "library",
+    "keywords": [
+        "php",
+        "combine",
+        "condition",
+        "operator",
+        "logic"
+    ],
+    "homepage": "https://github.com/thomas-blackbird/php-combine-conditions",
+    "license": "GNU General Public License v3.0",
+    "authors": [
+        {
+            "name": "Thomas Klein",
+            "email": "thomas@bird.eu",
+            "role": "lead"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/thomas-blackbird/php-combine-conditions/issues"
+    },
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "LogicTree\\": "src/"
+        }
+    }
+}
