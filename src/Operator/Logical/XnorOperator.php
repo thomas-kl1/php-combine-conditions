@@ -16,6 +16,8 @@ use LogicTree\Operator\OperatorInterface;
  */
 final class XnorOperator implements OperatorInterface
 {
+    const CODE = 'xnor';
+
     /**
      * {@inheritdoc}
      */

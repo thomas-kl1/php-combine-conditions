@@ -16,6 +16,8 @@ use LogicTree\Operator\OperatorInterface;
  */
 final class NandOperator implements OperatorInterface
 {
+    const CODE = 'nand';
+
     /**
      * {@inheritdoc}
      */

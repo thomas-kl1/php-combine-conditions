@@ -12,7 +12,7 @@ use LogicTree\Model\ConditionInterface;
 /**
  * Class AbstractIterator
  */
-abstract class AbstractIterator implements \Iterator
+abstract class AbstractCombine implements \Iterator
 {
     /**
      * @var int
@@ -20,12 +20,12 @@ abstract class AbstractIterator implements \Iterator
     private $key;
 
     /**
-     * @var array
+     * @var \LogicTree\Model\ConditionInterface[]
      */
     protected $items;
 
     /**
-     * @param array $items [optional]
+     * @param \LogicTree\Model\ConditionInterface[] $items [optional]
      */
     public function __construct(array $items = [])
     {

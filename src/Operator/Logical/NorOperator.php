@@ -16,6 +16,8 @@ use LogicTree\Operator\OperatorInterface;
  */
 final class NorOperator implements OperatorInterface
 {
+    const CODE = 'nor';
+
     /**
      * {@inheritdoc}
      */

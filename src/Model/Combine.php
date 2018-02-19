@@ -6,12 +6,12 @@ declare(strict_types=1);
 
 namespace LogicTree\Model;
 
-use LogicTree\Model\Combine\AbstractIterator;
+use LogicTree\Model\Combine\AbstractCombine;
 
 /**
  * Class Combine
  */
-final class Combine extends AbstractIterator implements ConditionInterface
+final class Combine extends AbstractCombine implements ConditionInterface
 {
     /**
      * @var string
@@ -54,7 +54,7 @@ final class Combine extends AbstractIterator implements ConditionInterface
     /**
      * Set the logic structure as conditions or combinations
      *
-     * @param array $conditions
+     * @param \LogicTree\Model\ConditionInterface[] $conditions
      * @return \LogicTree\Model\Combine
      */
     public function setConditions(array $conditions): self

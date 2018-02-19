@@ -4,12 +4,6 @@ Generic representation of conditional structure/tree library for PHP.
 
 ## Installation
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
 ### Composer (recommended)
 
 This package is available through Composer/Packagist:
@@ -56,9 +50,12 @@ Implement the following comparator operators:
       - array("seq" => $stringValue)
       - array("sneq" => $stringValue)
 
+Refactor DataSource array to objects.
+Add lazyloading option in the operator pool
+
 ## Authors
 
-* **Thomas Klein** - *Initial work* - [PurpleBooth](https://github.com/thomas-blackbird)
+* **Thomas Klein** - *Initial work* - [It's me!](https://github.com/thomas-blackbird)
 
 See also the list of [contributors](https://github.com/thomas-blackbird/php-combine-conditions/contributors) who participated in this project.
 

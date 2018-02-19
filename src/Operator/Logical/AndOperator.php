@@ -16,6 +16,8 @@ use LogicTree\Operator\OperatorInterface;
  */
 final class AndOperator implements OperatorInterface
 {
+    const CODE = 'and';
+
     /**
      * {@inheritdoc}
      */

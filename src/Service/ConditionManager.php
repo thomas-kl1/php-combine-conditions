@@ -9,8 +9,7 @@ namespace LogicTree\Service;
 use LogicTree\Model\Combine;
 use LogicTree\Model\Condition;
 use LogicTree\Model\ConditionInterface;
-use LogicTree\Resolver\Operator\ComparatorOperatorResolver;
-use LogicTree\Resolver\Operator\LogicalOperatorResolver;
+use LogicTree\Operator\OperatorPool;
 
 /**
  * Class ConditionManager
@@ -19,22 +18,18 @@ use LogicTree\Resolver\Operator\LogicalOperatorResolver;
 class ConditionManager
 {
     /**
-     * @var \LogicTree\Resolver\Operator\ComparatorOperatorResolver
+     * @var \LogicTree\Operator\OperatorPool
      */
-    private $comparatorOperatorResolver;
+    private $operatorPool;
 
     /**
-     * @var \LogicTree\Resolver\Operator\LogicalOperatorResolver
+     * @param \LogicTree\Operator\OperatorPool|null $operatorPool
      */
-    private $logicalOperatorResolver;
-
-    /**
-     * ConditionManager Constructor
-     */
-    public function __construct()
+    public function __construct(OperatorPool $operatorPool = null)
     {
-        $this->comparatorOperatorResolver = ComparatorOperatorResolver::getInstance();
-        $this->logicalOperatorResolver = LogicalOperatorResolver::getInstance();
+        if ($operatorPool === null) {
+            $this->operatorPool = new OperatorPool();
+        }
     }
 
     /**
@@ -70,7 +65,7 @@ class ConditionManager
      */
     private function executeCombine(Combine $combine, array $dataSource): bool
     {
-        $operator = $this->logicalOperatorResolver->resolve($combine->getOperator());
+        $operator = $this->operatorPool->getOperator(OperatorPool::TYPE_LOGICAL, $combine->getOperator());
         $expressions = [];
 
         foreach ($combine as $condition) {
@@ -87,9 +82,9 @@ class ConditionManager
      * @param mixed $value
      * @return bool
      */
-    private function executeCondition(Condition $condition, $value): bool
+    private function executeCondition(Condition $condition, mixed $value): bool
     {
-        $operator = $this->comparatorOperatorResolver->resolve($condition->getOperator());
+        $operator = $this->operatorPool->getOperator(OperatorPool::TYPE_COMPARATOR, $condition->getOperator());
 
         return $operator->execute($condition->getValueCompare(), $value);
     }

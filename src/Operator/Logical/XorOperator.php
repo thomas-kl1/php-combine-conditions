@@ -16,6 +16,8 @@ use LogicTree\Operator\OperatorInterface;
  */
 final class XorOperator implements OperatorInterface
 {
+    const CODE = 'xor';
+
     /**
      * {@inheritdoc}
      */
