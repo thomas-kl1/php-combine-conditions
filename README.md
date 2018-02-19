@@ -31,7 +31,7 @@ require_once __DIR__.'/<path_where_it_has_been_extracted>/autoloader.php';
 
 What's an `OperatorPool`? It's a class which regroup the whole operator instances used in the library.  
 You can register or retrieve `OperatorInterface` from this class. The goal is to use them in your combination of conditions.  
-The operators are divided in two large group of type:
+The operators are divided in two large groups:
 
 - The comparator operator
 - The logical operator
@@ -41,7 +41,7 @@ The operators are divided in two large group of type:
 The comparator operator is used to determine the result of a boolean expression.  
 *Eg: Does `'A'` and `'B'` are the same thing? I can test with an equality operator: `'A' == 'B'`).*
 
-The default comparator operators are available in: `src/Operator/Comparator`  
+The default comparator operators are available in: `src/Operator/Comparator`.  
 It's used in the `Condition` object.
 
 #### Logical Operator ####
@@ -49,7 +49,7 @@ It's used in the `Condition` object.
 The logical operator is used to commute many boolean expression (at least two).  
 *Eg: `'A' != 'B'` result should be the same as `'C' != 'D'`. I can check with the following expression `'A' != 'B' AND 'C' != 'D'`*
 
-The default logical operators are available in: `src/Operator/Logical`  
+The default logical operators are available in: `src/Operator/Logical`.  
 It's used in the `Combine` object.
 
 #### Override/Add new Operators ####
@@ -57,27 +57,37 @@ It's used in the `Combine` object.
 The library allows you to override the default operators and/or to provide new ones:  
 
 - You should instantiate the `OperatorPool` class.
-- Create your operators. They must implement the interface `ÒperatorInterface`.
+- Create your operators. They must implement the interface `OperatorInterface`.
 - Add your operators (two available types: `logical` and `comparator`) to the `OperatorPool` object. 
-- Finally, pass the `OperatorPool` object as the construct argument of the `ConditionManager` class.
+- Finally, pass the `OperatorPool` object in the construct of the `ConditionManager` class.
 
-*Eg: In the following example, we override the default comparators with ours.*
+*Eg: In the following example, we override the default comparators with ours and add a new one.*
 ```php
 $operatorPool = new \LogicTree\Operator\OperatorPool();
   
 $operatorPool->addOperator(
     \LogicTree\Operator\OperatorPool::TYPE_LOGICAL,
-    'and',
+    \LogicTree\Operator\Logical\AndOperator::CODE,
     new \My\Class\AndOperator()
 );
 $operatorPool->addOperator(
     \LogicTree\Operator\OperatorPool::TYPE_COMPARATOR,
-    'eq',
+    \LogicTree\Operator\Comparator\EqOperator::CODE,
     new \My\Class\EqOperator()
+);
+$operatorPool->addOperator(
+    \LogicTree\Operator\OperatorPool::TYPE_COMPARATOR,
+    'my_custom_operator',
+    new \My\Class\MyCustomOperator()
 );
   
 $conditionManager = new \LogicTree\Service\ConditionManager($operatorPool);
 ```
+*Now we are able to use these comparators.*
+
+### Condition and Combine ###
+
+*Not available yet!*
 
 ## Running the tests
 
