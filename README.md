@@ -27,32 +27,35 @@ require_once __DIR__.'/<path_where_it_has_been_extracted>/autoloader.php';
 
 *Documentation in progress!*
 
-### OperatorPool ###
+### OperatorPool
 
 What's an `OperatorPool`? It's a class which regroup the whole operator instances used in the library.  
 You can register or retrieve `OperatorInterface` from this class. The goal is to use them in your combination of conditions.  
 The operators are divided in two large groups:
 
-- The comparator operator
-- The logical operator
+- The comparator operator.
+- The logical operator.
 
-#### Comparator Operator ####
+#### Comparator Operator
 
 The comparator operator is used to determine the result of a boolean expression.  
-*Eg: Does `'A'` and `'B'` are the same thing? I can test with an equality operator: `'A' == 'B'`).*
+*Eg:  
+Does `'A'` and `'B'` are the same thing? I can test with an equality operator: `'A' == 'B'`).*
 
 The default comparator operators are available in: `src/Operator/Comparator`.  
 It's used in the `Condition` object.
 
-#### Logical Operator ####
+#### Logical Operator
 
 The logical operator is used to commute many boolean expression (at least two).  
-*Eg: `'A' != 'B'` result should be the same as `'C' != 'D'`. I can check with the following expression `'A' != 'B' AND 'C' != 'D'`*
+*Eg:  
+`'A' != 'B'` result should be the same as `'C' != 'D'`.  
+I can check with the following expression `'A' != 'B' AND 'C' != 'D'`.*
 
 The default logical operators are available in: `src/Operator/Logical`.  
 It's used in the `Combine` object.
 
-#### Override/Add new Operators ####
+#### Override/Add new Operators
 
 The library allows you to override the default operators and/or to provide new ones:  
 
@@ -85,7 +88,7 @@ $conditionManager = new \LogicTree\Service\ConditionManager($operatorPool);
 ```
 *Now we are able to use these comparators.*
 
-### Condition and Combine ###
+### Condition and Combine
 
 *Not available yet!*
 
@@ -109,7 +112,6 @@ Implement the following comparator operators:
       - array("sneq" => $stringValue)
 
 Refactor DataSource array to objects.
-Add lazyloading option in the operator pool
 
 ## Authors
 

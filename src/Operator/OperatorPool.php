@@ -102,15 +102,12 @@ final class OperatorPool
      *
      * @param string $type
      * @param string $operatorCode
-     * @param string $operator
+     * @param \LogicTree\Operator\OperatorInterface $operator
      * @return \LogicTree\Operator\OperatorPool
      */
-    public function addOperator(string $type, string $operatorCode, string $operator): self
+    public function addOperator(string $type, string $operatorCode, OperatorInterface $operator): self
     {
         if (!isset($this->operators[$type], $this->operators[$type][$operatorCode])) {
-            if (!($operator instanceof OperatorInterface)) {
-                throw new \LogicException(get_class($operator) . ' doesn\'t implement ' . OperatorInterface::class);
-            }
             if (!isset($this->operators[$type])) {
                 $this->operators[$type] = [];
             }

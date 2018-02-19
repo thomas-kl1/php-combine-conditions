@@ -9,6 +9,7 @@ namespace LogicTree\Service;
 use LogicTree\Model\Combine;
 use LogicTree\Model\Condition;
 use LogicTree\Model\ConditionInterface;
+use LogicTree\Model\DataSource;
 use LogicTree\Operator\OperatorPool;
 
 /**
@@ -36,17 +37,17 @@ class ConditionManager
      * Execute the logic tree structure conditions
      *
      * @param \LogicTree\Model\ConditionInterface $condition
-     * @param array $dataSource
+     * @param \LogicTree\Model\DataSource $dataSource
      * @return bool
      */
-    public function execute(ConditionInterface $condition, array $dataSource): bool
+    public function execute(ConditionInterface $condition, DataSource $dataSource): bool
     {
         $result = null;
 
         if ($condition instanceof Combine) {
             $result = $this->executeCombine($condition, $dataSource);
         } elseif ($condition instanceof Condition) {
-            $result = $this->executeCondition($condition, $dataSource[$condition->getValueIdentifier()]);
+            $result = $this->executeCondition($condition, $dataSource->getValue($condition->getValueIdentifier()));
         } else {
             throw new \LogicException(
                 get_class($condition) . ' must implement ' . Combine::class . ' or ' . Condition::class
@@ -60,10 +61,10 @@ class ConditionManager
      * Execute the combination of conditions expressions
      *
      * @param \LogicTree\Model\Combine $combine
-     * @param array $dataSource
+     * @param \LogicTree\Model\DataSource $dataSource
      * @return bool
      */
-    private function executeCombine(Combine $combine, array $dataSource): bool
+    private function executeCombine(Combine $combine, DataSource $dataSource): bool
     {
         $operator = $this->operatorPool->getOperator(OperatorPool::TYPE_LOGICAL, $combine->getOperator());
         $expressions = [];
