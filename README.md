@@ -111,7 +111,7 @@ Implement the following comparator operators:
       - array("seq" => $stringValue)
       - array("sneq" => $stringValue)
 
-Refactor DataSource array to objects.
+Remove methods: condition, combine, operator...
 
 ## Authors
 
