@@ -16,7 +16,7 @@ composer require tklein/php-combine-conditions
 
 [Download](https://github.com/thomas-blackbird/php-combine-conditions/zipball/master) this repo,
 or the [latest release](https://github.com/thomas-blackbird/php-combine-conditions/releases),
-and put it somewhere in your project. Then do:
+and put it somewhere in your project. Then do the following where you want to use the library:
 
 ```php
 <?php
@@ -25,7 +25,59 @@ require_once __DIR__.'/<path_where_it_has_been_extracted>/autoloader.php';
 
 ## Getting Started
 
-*No documentation available yet!*
+*Documentation in progress!*
+
+### OperatorPool ###
+
+What's an `OperatorPool`? It's a class which regroup the whole operator instances used in the library.  
+You can register or retrieve `OperatorInterface` from this class. The goal is to use them in your combination of conditions.  
+The operators are divided in two large group of type:
+
+- The comparator operator
+- The logical operator
+
+#### Comparator Operator ####
+
+The comparator operator is used to determine the result of a boolean expression.  
+*Eg: Does `'A'` and `'B'` are the same thing? I can test with an equality operator: `'A' == 'B'`).*
+
+The default comparator operators are available in: `src/Operator/Comparator`  
+It's used in the `Condition` object.
+
+#### Logical Operator ####
+
+The logical operator is used to commute many boolean expression (at least two).  
+*Eg: `'A' != 'B'` result should be the same as `'C' != 'D'`. I can check with the following expression `'A' != 'B' AND 'C' != 'D'`*
+
+The default logical operators are available in: `src/Operator/Logical`  
+It's used in the `Combine` object.
+
+#### Override/Add new Operators ####
+
+The library allows you to override the default operators and/or to provide new ones:  
+
+- You should instantiate the `OperatorPool` class.
+- Create your operators. They must implement the interface `ÒperatorInterface`.
+- Add your operators (two available types: `logical` and `comparator`) to the `OperatorPool` object. 
+- Finally, pass the `OperatorPool` object as the construct argument of the `ConditionManager` class.
+
+*Eg: In the following example, we override the default comparators with ours.*
+```php
+$operatorPool = new \LogicTree\Operator\OperatorPool();
+  
+$operatorPool->addOperator(
+    \LogicTree\Operator\OperatorPool::TYPE_LOGICAL,
+    'and',
+    new \My\Class\AndOperator()
+);
+$operatorPool->addOperator(
+    \LogicTree\Operator\OperatorPool::TYPE_COMPARATOR,
+    'eq',
+    new \My\Class\EqOperator()
+);
+  
+$conditionManager = new \LogicTree\Service\ConditionManager($operatorPool);
+```
 
 ## Running the tests
 
@@ -41,12 +93,8 @@ Implement the following comparator operators:
 
       - array("from" => $fromValue, "to" => $toValue)
       - array("like" => $likeValue)
-      - array("in" => array($inValues))
-      - array("nin" => array($notInValues))
-      - array("notnull" => $valueIsNotNull)
       - array("moreq" => $moreOrEqualValue)
       - array("finset" => $valueInSet)
-      - array("regexp" => $regularExpression)
       - array("seq" => $stringValue)
       - array("sneq" => $stringValue)
 
