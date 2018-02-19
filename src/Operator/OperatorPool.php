@@ -16,6 +16,7 @@ use LogicTree\Operator\Comparator\LtOperator;
 use LogicTree\Operator\Comparator\NeqOperator;
 use LogicTree\Operator\Comparator\NidenOperator;
 use LogicTree\Operator\Comparator\NullOperator;
+use LogicTree\Operator\Comparator\RegexpOperator;
 use LogicTree\Operator\Logical\AndOperator;
 use LogicTree\Operator\Logical\NandOperator;
 use LogicTree\Operator\Logical\NorOperator;
@@ -47,6 +48,7 @@ final class OperatorPool
             NeqOperator::CODE => NeqOperator::class,
             NidenOperator::CODE => NidenOperator::class,
             NullOperator::CODE => NullOperator::class,
+            RegexpOperator::CODE => RegexpOperator::class,
         ],
         self::TYPE_LOGICAL => [
             AndOperator::CODE => AndOperator::class,
