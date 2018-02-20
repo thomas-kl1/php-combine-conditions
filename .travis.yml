@@ -5,9 +5,6 @@ php:
 cache:
   directories:
     - $HOME/.composer/cache
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y pdepend
 install:
   - composer install --no-progress --no-interaction --prefer-dist --no-suggest
 script:
