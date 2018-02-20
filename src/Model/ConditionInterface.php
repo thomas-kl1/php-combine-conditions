@@ -26,4 +26,19 @@ interface ConditionInterface
      * @return \LogicTree\Model\ConditionInterface
      */
     public function setOperator(string $operator);
+
+    /**
+     * Retrieve the parent combine
+     *
+     * @return \LogicTree\Model\ConditionInterface
+     */
+    public function getParent(): ConditionInterface;
+
+    /**
+     * Set the parent combine
+     *
+     * @param \LogicTree\Model\ConditionInterface $condition
+     * @return mixed
+     */
+    public function setParent(ConditionInterface $condition);
 }

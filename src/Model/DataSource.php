@@ -61,6 +61,20 @@ class DataSource
     }
 
     /**
+     * Remove the data by keys
+     *
+     * @param array $keys
+     * @return \LogicTree\Model\DataSource
+     */
+    public function unsetData(array $keys): self
+    {
+        foreach ($keys as $key) {
+            $this->unsetValue($key);
+        }
+        return $this;
+    }
+
+    /**
      * Retrieve the data value
      *
      * @param string $key
@@ -81,6 +95,18 @@ class DataSource
     public function setValue(string $key, mixed $value): self
     {
         $this->data[$key] = $value;
+        return $this;
+    }
+
+    /**
+     * Remove the data value
+     *
+     * @param string $key
+     * @return \LogicTree\Model\DataSource
+     */
+    public function unsetValue(string $key): self
+    {
+        unset($this->data[$key]);
         return $this;
     }
 }

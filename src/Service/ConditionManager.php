@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace LogicTree\Service;
 
-use LogicTree\Model\Combine;
+use LogicTree\Model\AbstractModel;
 use LogicTree\Model\Condition;
 use LogicTree\Model\ConditionInterface;
 use LogicTree\Model\DataSource;

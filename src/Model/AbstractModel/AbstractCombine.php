@@ -5,14 +5,14 @@
  */
 declare(strict_types=1);
 
-namespace LogicTree\Model\Combine;
+namespace LogicTree\Model\AbstractModel;
 
 use LogicTree\Model\ConditionInterface;
 
 /**
  * Class AbstractIterator
  */
-abstract class AbstractCombine implements \Iterator
+abstract class AbstractCombine extends AbstractCondition implements \Iterator, \Countable
 {
     /**
      * @var int
@@ -71,5 +71,13 @@ abstract class AbstractCombine implements \Iterator
     public function rewind(): void
     {
         $this->key = 0;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function count()
+    {
+        return count($this->items);
     }
 }

@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace LogicTree\Model;
 
-use LogicTree\Model\Combine\AbstractCombine;
+use LogicTree\Model\AbstractModel\AbstractCombine;
 
 /**
  * Class Combine
@@ -48,6 +48,7 @@ final class Combine extends AbstractCombine implements ConditionInterface
      */
     public function addCondition(ConditionInterface $condition): self
     {
+        $condition->setParent($this);
         $this->items[] = $condition;
         return $this;
     }

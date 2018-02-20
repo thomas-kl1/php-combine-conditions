@@ -7,10 +7,12 @@ declare(strict_types=1);
 
 namespace LogicTree\Model;
 
+use LogicTree\Model\AbstractModel\AbstractCondition;
+
 /**
  * Class Condition
  */
-final class Condition implements ConditionInterface
+final class Condition extends AbstractCondition implements ConditionInterface
 {
     /**
      * @var string
