@@ -2,5 +2,16 @@ language: php
 php:
   - '7.1'
   - '7.2'
+cache:
+  directories:
+    - $HOME/.composer/cache
 install:
-  - 'composer install --no-interaction'
+  - composer install --no-progress --no-interaction --prefer-dist --no-suggest
+script:
+  - vendor/bin/phpmd src/ xml codesize,cleancode,controversial,design,unusedcode,naming --sufixes php
+  - vendor/bin/phpcpd
+  - vendor/bin/phpcs
+  - vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
+  - vendor/bin/pdepend src/
+notifications:
+  email: false
