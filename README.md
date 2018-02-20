@@ -1,5 +1,7 @@
 # PHP Combine Conditions
 
+[![Build Status](https://travis-ci.org/thomas-blackbird/php-combine-conditions.svg?branch=master)](https://travis-ci.org/thomas-blackbird/php-combine-conditions)
+
 Generic representation of conditional structure/tree library for PHP.
 
 ## Installation
