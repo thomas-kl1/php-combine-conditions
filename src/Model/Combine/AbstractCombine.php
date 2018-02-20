@@ -1,7 +1,7 @@
 <?php
 /**
  * Copyright © Thomas Klein. All rights reserved.
- * See LICENCE in the root dir for license details.
+ * See LICENSE bundled with this library for license details.
  */
 declare(strict_types=1);
 
