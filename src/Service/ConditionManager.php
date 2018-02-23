@@ -7,10 +7,10 @@ declare(strict_types=1);
 
 namespace LogicTree\Service;
 
-use LogicTree\Model\NodeInterface;
-use LogicTree\Model\ConditionInterface;
 use LogicTree\Model\CombineInterface;
+use LogicTree\Model\ConditionInterface;
 use LogicTree\Model\DataSource;
+use LogicTree\Model\NodeInterface;
 use LogicTree\Operator\OperatorPool;
 
 /**
