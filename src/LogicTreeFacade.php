@@ -90,7 +90,8 @@ class LogicTreeFacade
     public function executeCombineConditionsFormat(string $format, mixed $node, array $dataSource): bool
     {
         return $this->conditionManager->execute(
-            $this->convertFormat($format,$node), $this->createDataSource($dataSource)
+            $this->convertFormat($format, $node),
+            $this->createDataSource($dataSource)
         );
     }
 
