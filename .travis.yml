@@ -9,9 +9,9 @@ install:
   - composer install --no-progress --no-interaction --prefer-dist --no-suggest
 script:
   - vendor/bin/phpmd src/ xml codesize,cleancode,controversial,design,unusedcode,naming --sufixes php
-  - vendor/bin/phpcpd src/
+#  - vendor/bin/phpcpd src/
   - vendor/bin/phpcs --standard=PSR1,PSR2 -v src/
   - vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
-  - vendor/bin/pdepend src/
+#  - vendor/bin/pdepend src/
 notifications:
   email: false
