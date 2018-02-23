@@ -1,6 +1,9 @@
 # PHP Combine Conditions
 
 [![Build Status](https://travis-ci.org/thomas-blackbird/php-combine-conditions.svg?branch=master)](https://travis-ci.org/thomas-blackbird/php-combine-conditions)
+[![Coverage Status](https://coveralls.io/repos/github/thomas-blackbird/php-combine-conditions/badge.svg?branch=master)](https://coveralls.io/github/thomas-blackbird/php-combine-conditions?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/tklein/php-combine-conditions/v/stable)](https://packagist.org/packages/tklein/php-combine-conditions)
+[![License: MIT](https://img.shields.io/github/license/thomas-blackbird/php-combine-conditions.svg)](./LICENSE)
 
 Generic representation of conditional structure/tree library for PHP.
 

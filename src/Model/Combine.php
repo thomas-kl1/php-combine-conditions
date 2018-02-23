@@ -41,6 +41,16 @@ final class Combine extends AbstractCombine implements ConditionInterface
     }
 
     /**
+     * Retrieve the conditions as array of Conditions
+     *
+     * @return \LogicTree\Model\ConditionInterface[]
+     */
+    public function getConditions(): array
+    {
+        return $this->items;
+    }
+
+    /**
      * Add a logic structure as condition or combination
      *
      * @param \LogicTree\Model\ConditionInterface $condition

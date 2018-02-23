@@ -41,4 +41,11 @@ interface ConditionInterface
      * @return mixed
      */
     public function setParent(ConditionInterface $condition);
+
+    /**
+     * Check if it has an existing parent
+     *
+     * @return bool
+     */
+    public function hasParent(): bool;
 }

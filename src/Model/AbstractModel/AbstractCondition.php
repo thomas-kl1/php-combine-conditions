@@ -35,4 +35,12 @@ abstract class AbstractCondition implements ConditionInterface
         $this->parent = $condition;
         return $this;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasParent(): bool
+    {
+        return ($this->parent !== null);
+    }
 }
