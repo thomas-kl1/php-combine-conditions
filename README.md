@@ -1,5 +1,6 @@
 # PHP Combine Conditions
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/92a56a8e4a0d4e4b8681bbe439cf73ac)](https://app.codacy.com/app/thomas-blackbird/php-combine-conditions?utm_source=github.com&utm_medium=referral&utm_content=thomas-blackbird/php-combine-conditions&utm_campaign=badger)
 [![Build Status](https://travis-ci.org/thomas-blackbird/php-combine-conditions.svg?branch=master)](https://travis-ci.org/thomas-blackbird/php-combine-conditions)
 [![Coverage Status](https://coveralls.io/repos/github/thomas-blackbird/php-combine-conditions/badge.svg?branch=master)](https://coveralls.io/github/thomas-blackbird/php-combine-conditions?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/tklein/php-combine-conditions/v/stable)](https://packagist.org/packages/tklein/php-combine-conditions)
