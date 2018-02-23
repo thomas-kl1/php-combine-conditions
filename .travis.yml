@@ -13,5 +13,6 @@ script:
   - vendor/bin/phpcs --standard=PSR1,PSR2 -v src/
   - vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
 #  - vendor/bin/pdepend src/
+#  - vendor/bin/phpunit --configuration .phpunit.xml
 notifications:
   email: false

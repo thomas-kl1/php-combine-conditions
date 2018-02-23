@@ -80,25 +80,29 @@ class LogicTreeFacade
     }
 
     /**
-     * Execute the logic tree structure conditions (array)
+     * Execute the logic tree structure conditions
      *
-     * @param array $node
+     * @param string $format
+     * @param mixed $node
      * @param array $dataSource
      * @return bool
      */
-    public function executeCombineConditionsArray(array $node, array $dataSource): bool
+    public function executeCombineConditionsFormat(string $format, mixed $node, array $dataSource): bool
     {
-        return $this->conditionManager->execute($this->arrayToCondition($node), $this->createDataSource($dataSource));
+        return $this->conditionManager->execute(
+            $this->convertFormat($format,$node), $this->createDataSource($dataSource)
+        );
     }
 
     /**
      * Transform an array conditions to a combine conditions object
      *
-     * @param array $node
+     * @param string $format
+     * @param mixed $node
      * @return \LogicTree\Model\NodeInterface
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    private function arrayToCondition(array $node): NodeInterface
+    public function convertFormat(string $format, mixed $node): NodeInterface
     {
         //todo implement method.
         throw new \LogicException('Not implemented yet!');
