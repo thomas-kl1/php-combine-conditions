@@ -10,7 +10,7 @@
         "logic"
     ],
     "homepage": "https://github.com/thomas-blackbird/php-combine-conditions",
-    "license": "GNU General Public License v3.0",
+    "license": "MIT",
     "authors": [
         {
             "name": "Thomas Klein",
