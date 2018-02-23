@@ -7,22 +7,23 @@ declare(strict_types=1);
 
 namespace LogicTree\Model\AbstractModel;
 
-use LogicTree\Model\ConditionInterface;
+use LogicTree\Model\CombineInterface;
+use LogicTree\Model\NodeInterface;
 
 /**
  * Class AbstractCondition
  */
-abstract class AbstractCondition implements ConditionInterface
+abstract class AbstractNode implements NodeInterface
 {
     /**
-     * @var \LogicTree\Model\ConditionInterface
+     * @var \LogicTree\Model\CombineInterface
      */
     private $parent;
 
     /**
      * {@inheritdoc}
      */
-    public function getParent(): ConditionInterface
+    public function getParent(): CombineInterface
     {
         return $this->parent;
     }
@@ -30,9 +31,9 @@ abstract class AbstractCondition implements ConditionInterface
     /**
      * {@inheritdoc}
      */
-    public function setParent(ConditionInterface $condition)
+    public function setParent(CombineInterface $combine): NodeInterface
     {
-        $this->parent = $condition;
+        $this->parent = $combine;
         return $this;
     }
 

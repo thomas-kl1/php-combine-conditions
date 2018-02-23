@@ -7,9 +7,9 @@ declare(strict_types=1);
 
 namespace LogicTree\Service;
 
-use LogicTree\Model\AbstractModel;
-use LogicTree\Model\Condition;
+use LogicTree\Model\NodeInterface;
 use LogicTree\Model\ConditionInterface;
+use LogicTree\Model\CombineInterface;
 use LogicTree\Model\DataSource;
 use LogicTree\Operator\OperatorPool;
 
@@ -37,22 +37,20 @@ class ConditionManager
     /**
      * Execute the logic tree structure conditions
      *
-     * @param \LogicTree\Model\ConditionInterface $condition
+     * @param \LogicTree\Model\NodeInterface $node
      * @param \LogicTree\Model\DataSource $dataSource
      * @return bool
      */
-    public function execute(ConditionInterface $condition, DataSource $dataSource): bool
+    public function execute(NodeInterface $node, DataSource $dataSource): bool
     {
         $result = null;
 
-        if ($condition instanceof Combine) {
-            $result = $this->executeCombine($condition, $dataSource);
-        } elseif ($condition instanceof Condition) {
-            $result = $this->executeCondition($condition, $dataSource->getValue($condition->getValueIdentifier()));
-        } else {
-            throw new \LogicException(
-                get_class($condition) . ' must implement ' . Combine::class . ' or ' . Condition::class
-            );
+        if (!($node instanceof NodeInterface)) {
+            throw new \LogicException(get_class($node) . ' must implement ' . NodeInterface::class . '.');
+        } elseif ($node instanceof CombineInterface) {
+            $result = $this->executeCombine($node, $dataSource);
+        } elseif ($node instanceof ConditionInterface) {
+            $result = $this->executeCondition($node, $dataSource->getValue($node->getValueIdentifier()));
         }
 
         return $result;
@@ -61,17 +59,17 @@ class ConditionManager
     /**
      * Execute the combination of conditions expressions
      *
-     * @param \LogicTree\Model\Combine $combine
+     * @param \LogicTree\Model\CombineInterface $combine
      * @param \LogicTree\Model\DataSource $dataSource
      * @return bool
      */
-    private function executeCombine(Combine $combine, DataSource $dataSource): bool
+    private function executeCombine(CombineInterface $combine, DataSource $dataSource): bool
     {
         $operator = $this->operatorPool->getOperator(OperatorPool::TYPE_LOGICAL, $combine->getOperator());
         $expressions = [];
 
-        foreach ($combine as $condition) {
-            $expressions[] = $this->execute($condition, $dataSource);
+        foreach ($combine->getChildren() as $child) {
+            $expressions[] = $this->execute($child, $dataSource);
         }
 
         return ($combine->isInvert() xor $operator->execute(...$expressions));
@@ -80,11 +78,11 @@ class ConditionManager
     /**
      * Execute the condition expression
      *
-     * @param \LogicTree\Model\Condition $condition
+     * @param \LogicTree\Model\ConditionInterface $condition
      * @param mixed $value
      * @return bool
      */
-    private function executeCondition(Condition $condition, mixed $value): bool
+    private function executeCondition(ConditionInterface $condition, mixed $value): bool
     {
         $operator = $this->operatorPool->getOperator(OperatorPool::TYPE_COMPARATOR, $condition->getOperator());
 

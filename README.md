@@ -3,7 +3,7 @@
 [![Travis branch](https://img.shields.io/travis/thomas-blackbird/php-combine-conditions/master.svg?style=flat-square)](https://travis-ci.org/thomas-blackbird/php-combine-conditions?branch=master)
 [![Codacy Badge](https://img.shields.io/codacy/grade/92a56a8e4a0d4e4b8681bbe439cf73ac/master.svg?style=flat-square)](https://app.codacy.com/app/thomas-blackbird/php-combine-conditions)
 [![Coveralls github branch](https://img.shields.io/coveralls/github/thomas-blackbird/php-combine-conditions/master.svg?style=flat-square)](https://coveralls.io/github/thomas-blackbird/php-combine-conditions?branch=master)
-[![Latest Stable Version](https://img.shields.io/packagist/v/tklein/php-combine-conditions/v/stable?style=flat-square)](https://packagist.org/packages/tklein/php-combine-conditions)
+[![Latest Stable Version](https://img.shields.io/packagist/v/tklein/php-combine-conditions.svg?style=flat-square)](https://packagist.org/packages/tklein/php-combine-conditions)
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/tklein/php-combine-conditions.svg?style=flat-square)](https://packagist.org/packages/tklein/php-combine-conditions)
 [![License: MIT](https://img.shields.io/github/license/thomas-blackbird/php-combine-conditions.svg?style=flat-square)](./LICENSE)
 
@@ -33,6 +33,17 @@ require_once __DIR__.'/<path_where_it_has_been_extracted>/autoloader.php';
 ## Getting Started
 
 *Documentation in progress!*
+
+The combine conditions library for PHP is tool which helps to build dynamically structured (as tree) conditions.  
+These conditions are able to be combined and customized operators can be provided.  
+This library can be used in many context, as to generate complex SQL conditions, and can be exported to multiple format
+as JSON, XML, FULLTEXT...  
+An other case to use this library is to execute and process frontend conditional tree (Eg: a user build his conditional
+tree and would like to process the result).
+
+### Main Library Entrance
+
+*No documentation available yet!*
 
 ### OperatorPool
 
@@ -97,7 +108,49 @@ $conditionManager = new \LogicTree\Service\ConditionManager($operatorPool);
 
 ### Condition and Combine
 
-*Not available yet!*
+These class always implement the `ConditionInterface`. They represent the base model of the library.  
+Because the used pattern here is a composition, you may want to know if the current object is the root or a node, you
+should use the following methods:
+
+- hasParent() : check if the current object has parent or not
+- getParent() : retrieve the current object's parent
+
+#### Condition
+
+`Condition`: it represents an expression with a comparator operator.  
+The class is: `\LogicTree\Model\Condition`  
+It requires a mixed value to compared by an operator to a value from the data source.
+
+The operator is a `string` which is the code of the wanted operator.
+The first value is a `string` which is the identifier of the value from the `DataSource` object.  
+The value to compare must be a `mixed` value.
+
+#### Combine
+
+`Combine`: it represents an expression with a logical operator.  
+The class is: `\LogicTree\Model\Combine`
+It requires at least two conditions and/or combines to commute with a logical operator.
+
+The operator is a `string` which is the code of the wanted operator.  
+The conditions/combine must be an instance of `ConditionInterface`.    
+
+You can add `Condition` and/or `Combine` to a `Combine` object with the following methods:
+
+- addCondition(ConditionInterface $condition) : add a new condition to the combine object 
+- setConditions(array $conditions) : replace all conditions by the new ones
+
+If you want to invert the result of the combination of conditions, you can specify to the `Combine` object that the 
+result should actually be inverted:
+
+- setIsInvert(bool $isInvert)
+
+### Execute the Combine Conditions
+
+*No documentation available yet!*
+
+### Export the Combine Conditions to Format
+
+*No documentation available yet!* 
 
 ## Running the tests
 
@@ -118,7 +171,7 @@ Implement the following comparator operators:
       - array("seq" => $stringValue)
       - array("sneq" => $stringValue)
 
-Remove methods: condition, combine, operator...
+ToString methods, in order to render the combine conditions in full text / different formats.
 
 ## Authors
 

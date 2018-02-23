@@ -10,42 +10,35 @@ namespace LogicTree\Model;
  * Interface ConditionInterface
  * @api
  */
-interface ConditionInterface
+interface ConditionInterface extends NodeInterface
 {
     /**
-     * Retrieve the operator
+     * Retrieve the value key identifier to compare
      *
      * @return string
      */
-    public function getOperator(): string;
+    public function getValueIdentifier(): string;
 
     /**
-     * Set the operator
+     * Set the value key identifier to compare
      *
-     * @param string $operator
+     * @param string $identifier
      * @return \LogicTree\Model\ConditionInterface
      */
-    public function setOperator(string $operator);
+    public function setValueIdentifier(string $identifier): ConditionInterface;
 
     /**
-     * Retrieve the parent combine
+     * Retrieve the value to compare
      *
-     * @return \LogicTree\Model\ConditionInterface
-     */
-    public function getParent(): ConditionInterface;
-
-    /**
-     * Set the parent combine
-     *
-     * @param \LogicTree\Model\ConditionInterface $condition
      * @return mixed
      */
-    public function setParent(ConditionInterface $condition);
+    public function getValueCompare(): mixed;
 
     /**
-     * Check if it has an existing parent
+     * Set the value to compare
      *
-     * @return bool
+     * @param mixed $value
+     * @return \LogicTree\Model\ConditionInterface
      */
-    public function hasParent(): bool;
+    public function setValueCompare(mixed $value): ConditionInterface;
 }

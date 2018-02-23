@@ -7,12 +7,12 @@ declare(strict_types=1);
 
 namespace LogicTree\Model;
 
-use LogicTree\Model\AbstractModel\AbstractCombine;
+use LogicTree\Model\AbstractModel\AbstractNode;
 
 /**
  * Class Combine
  */
-final class Combine extends AbstractCombine implements ConditionInterface
+final class Combine extends AbstractNode implements CombineInterface
 {
     /**
      * @var string
@@ -25,63 +25,73 @@ final class Combine extends AbstractCombine implements ConditionInterface
     private $isInvert;
 
     /**
+     * @var \LogicTree\Model\NodeInterface[]
+     */
+    private $nodes;
+
+    /**
      * @param string $operator
      * @param bool $isInvert [optional] Is false by default.
-     * @param \LogicTree\Model\ConditionInterface[] $conditions [optional] Is empty by default.
+     * @param \LogicTree\Model\NodeInterface[] $children [optional] Is empty by default.
      */
     public function __construct(
         string $operator,
-        bool $isInvert = false,
-        array $conditions = []
+        bool $isInvert = null,
+        array $children = []
     ) {
-        parent::__construct();
         $this->setOperator($operator);
-        $this->setIsInvert($isInvert);
-        $this->setConditions($conditions);
+        $this->setIsInvert($isInvert ?? false);
+        $this->setChildren($children);
     }
 
     /**
-     * Retrieve the conditions as array of Conditions
-     *
-     * @return \LogicTree\Model\ConditionInterface[]
+     * {@inheritdoc}
      */
-    public function getConditions(): array
+    public function getChildren(): array
     {
-        return $this->items;
+        return $this->nodes;
     }
 
     /**
-     * Add a logic structure as condition or combination
-     *
-     * @param \LogicTree\Model\ConditionInterface $condition
-     * @return \LogicTree\Model\Combine
+     * {@inheritdoc}
      */
-    public function addCondition(ConditionInterface $condition): self
+    public function setChildren(array $children): CombineInterface
     {
-        $condition->setParent($this);
-        $this->items[] = $condition;
-        return $this;
-    }
-
-    /**
-     * Set the logic structure as conditions or combinations
-     *
-     * @param \LogicTree\Model\ConditionInterface[] $conditions
-     * @return \LogicTree\Model\Combine
-     */
-    public function setConditions(array $conditions): self
-    {
-        $this->items = [];
-        foreach ($conditions as $condition) {
-            $this->addCondition($condition);
+        $this->nodes = [];
+        foreach ($children as $child) {
+            $this->addChild($child);
         }
         return $this;
     }
 
     /**
-     * Check if the result should be inverted
-     *
-     * @return bool
+     * {@inheritdoc}
+     */
+    public function addChild(NodeInterface $condition): CombineInterface
+    {
+        $condition->setParent($this);
+        $this->nodes[] = $condition;
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCount(): int
+    {
+        return count($this->getChildren());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasChildren(): bool
+    {
+        return ($this->getCount() > 0);
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function isInvert(): bool
     {
@@ -89,12 +99,9 @@ final class Combine extends AbstractCombine implements ConditionInterface
     }
 
     /**
-     * Set is result of combination inverted
-     *
-     * @param bool $isInvert
-     * @return \LogicTree\Model\Combine
+     * {@inheritdoc}
      */
-    public function setIsInvert(bool $isInvert): self
+    public function setIsInvert(bool $isInvert): CombineInterface
     {
         $this->isInvert = $isInvert;
         return $this;
@@ -111,7 +118,7 @@ final class Combine extends AbstractCombine implements ConditionInterface
     /**
      * {@inheritdoc}
      */
-    public function setOperator(string $operator): self
+    public function setOperator(string $operator): CombineInterface
     {
         $this->operator = $operator;
         return $this;

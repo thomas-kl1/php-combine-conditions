@@ -7,8 +7,8 @@ declare(strict_types=1);
 
 namespace LogicTree;
 
-use LogicTree\Model\ConditionInterface;
 use LogicTree\Model\DataSource;
+use LogicTree\Model\NodeInterface;
 use LogicTree\Operator\OperatorInterface;
 use LogicTree\Operator\OperatorPool;
 use LogicTree\Service\ConditionManager;
@@ -33,11 +33,11 @@ class LogicTreeFacade
      */
     public function __construct(ConditionManager $conditionManager = null)
     {
+        $this->conditionManager = $conditionManager;
         $this->operatorPool = new OperatorPool();
+
         if ($conditionManager === null) {
             $this->instantiateConditionManager();
-        } else {
-            $this->conditionManager = $conditionManager;
         }
     }
 
@@ -70,37 +70,35 @@ class LogicTreeFacade
     /**
      * Execute the logic tree structure conditions
      *
-     * @param \LogicTree\Model\ConditionInterface $condition
+     * @param \LogicTree\Model\NodeInterface $node
      * @param \LogicTree\Model\DataSource $dataSource
      * @return bool
      */
-    public function executeCombineConditions(ConditionInterface $condition, DataSource $dataSource): bool
+    public function executeCombineConditions(NodeInterface $node, DataSource $dataSource): bool
     {
-        return $this->conditionManager->execute($condition, $dataSource);
+        return $this->conditionManager->execute($node, $dataSource);
     }
 
     /**
      * Execute the logic tree structure conditions (array)
      *
-     * @param array $condition
+     * @param array $node
      * @param array $dataSource
      * @return bool
      */
-    public function executeCombineConditionsArray(array $condition, array $dataSource): bool
+    public function executeCombineConditionsArray(array $node, array $dataSource): bool
     {
-        return $this->conditionManager->execute(
-            $this->arrayToCondition($condition),
-            $this->createDataSource($dataSource)
-        );
+        return $this->conditionManager->execute($this->arrayToCondition($node), $this->createDataSource($dataSource));
     }
 
     /**
      * Transform an array conditions to a combine conditions object
      *
-     * @param array $condition
-     * @return \LogicTree\Model\ConditionInterface
+     * @param array $node
+     * @return \LogicTree\Model\NodeInterface
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    private function arrayToCondition(array $condition): ConditionInterface
+    private function arrayToCondition(array $node): NodeInterface
     {
         //todo implement method.
         throw new \LogicException('Not implemented yet!');

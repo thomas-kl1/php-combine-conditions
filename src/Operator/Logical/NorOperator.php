@@ -24,15 +24,15 @@ final class NorOperator implements OperatorInterface
      */
     public function execute(...$expressions): bool
     {
-        $count = count($expressions);
-        $result = $expressions[0];
+        $result = false;
 
-        if (!$result) {
+        if (!$expressions[0]) {
+            $count = count($expressions);
+            $result = $expressions[0];
+
             for ($i = 1; !$expressions[$i] && $i < $count; $i++) {
                 $result = !($result || $expressions[$i]);
             }
-        } else {
-            $result = false;
         }
 
         return $result;

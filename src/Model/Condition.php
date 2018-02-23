@@ -7,12 +7,12 @@ declare(strict_types=1);
 
 namespace LogicTree\Model;
 
-use LogicTree\Model\AbstractModel\AbstractCondition;
+use LogicTree\Model\AbstractModel\AbstractNode;
 
 /**
  * Class Condition
  */
-final class Condition extends AbstractCondition implements ConditionInterface
+final class Condition extends AbstractNode implements ConditionInterface
 {
     /**
      * @var string
@@ -30,6 +30,21 @@ final class Condition extends AbstractCondition implements ConditionInterface
     private $valueCompare;
 
     /**
+     * @param string $valueIdentifier
+     * @param string $operator
+     * @param mixed $valueCompare
+     */
+    public function __construct(
+        string $valueIdentifier,
+        string $operator,
+        mixed $valueCompare
+    ) {
+        $this->setValueIdentifier($valueIdentifier);
+        $this->setOperator($operator);
+        $this->setValueCompare($valueCompare);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getOperator(): string
@@ -40,16 +55,14 @@ final class Condition extends AbstractCondition implements ConditionInterface
     /**
      * {@inheritdoc}
      */
-    public function setOperator(string $operator): self
+    public function setOperator(string $operator): ConditionInterface
     {
         $this->operator = $operator;
         return $this;
     }
 
     /**
-     * Retrieve the value key identifier to compare
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getValueIdentifier(): string
     {
@@ -57,21 +70,16 @@ final class Condition extends AbstractCondition implements ConditionInterface
     }
 
     /**
-     * Set the value key identifier to compare
-     *
-     * @param string $identifier
-     * @return \LogicTree\Model\Condition
+     * {@inheritdoc}
      */
-    public function setValueIdentifier(string $identifier): self
+    public function setValueIdentifier(string $identifier): ConditionInterface
     {
         $this->valueIdentifier = $identifier;
         return $this;
     }
 
     /**
-     * Retrieve the value to compare
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getValueCompare(): mixed
     {
@@ -79,12 +87,9 @@ final class Condition extends AbstractCondition implements ConditionInterface
     }
 
     /**
-     * Set the value to compare
-     *
-     * @param mixed $value
-     * @return \LogicTree\Model\Condition
+     * {@inheritdoc}
      */
-    public function setValueCompare(mixed $value): self
+    public function setValueCompare(mixed $value): ConditionInterface
     {
         $this->valueCompare = $value;
         return $this;
