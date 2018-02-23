@@ -1,10 +1,11 @@
 # PHP Combine Conditions
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/92a56a8e4a0d4e4b8681bbe439cf73ac)](https://app.codacy.com/app/thomas-blackbird/php-combine-conditions?utm_source=github.com&utm_medium=referral&utm_content=thomas-blackbird/php-combine-conditions&utm_campaign=badger)
-[![Build Status](https://travis-ci.org/thomas-blackbird/php-combine-conditions.svg?branch=master)](https://travis-ci.org/thomas-blackbird/php-combine-conditions)
-[![Coverage Status](https://coveralls.io/repos/github/thomas-blackbird/php-combine-conditions/badge.svg?branch=master)](https://coveralls.io/github/thomas-blackbird/php-combine-conditions?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/tklein/php-combine-conditions/v/stable)](https://packagist.org/packages/tklein/php-combine-conditions)
-[![License: MIT](https://img.shields.io/github/license/thomas-blackbird/php-combine-conditions.svg)](./LICENSE)
+[![Travis branch](https://img.shields.io/travis/thomas-blackbird/php-combine-conditions/master.svg?style=flat-square)](https://travis-ci.org/thomas-blackbird/php-combine-conditions?branch=master)
+[![Codacy Badge](https://img.shields.io/codacy/grade/92a56a8e4a0d4e4b8681bbe439cf73ac/master.svg?style=flat-square)](https://app.codacy.com/app/thomas-blackbird/php-combine-conditions)
+[![Coveralls github branch](https://img.shields.io/coveralls/github/thomas-blackbird/php-combine-conditions/master.svg?style=flat-square)](https://coveralls.io/github/thomas-blackbird/php-combine-conditions?branch=master)
+[![Latest Stable Version](https://img.shields.io/packagist/v/tklein/php-combine-conditions/v/stable?style=flat-square)](https://packagist.org/packages/tklein/php-combine-conditions)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/tklein/php-combine-conditions.svg?style=flat-square)](https://packagist.org/packages/tklein/php-combine-conditions)
+[![License: MIT](https://img.shields.io/github/license/thomas-blackbird/php-combine-conditions.svg?style=flat-square)](./LICENSE)
 
 Generic representation of conditional structure/tree library for PHP.
 
