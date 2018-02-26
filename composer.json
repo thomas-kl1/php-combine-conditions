@@ -15,10 +15,12 @@
         {
             "name": "Thomas Klein",
             "email": "thomas@bird.eu",
+            "homepage": "https://www.linkedin.com/in/thomas-klein/",
             "role": "lead"
         }
     ],
     "support": {
+        "source": "https://github.com/thomas-blackbird/php-combine-conditions",
         "issues": "https://github.com/thomas-blackbird/php-combine-conditions/issues"
     },
     "prefer-stable": true,
@@ -36,6 +38,11 @@
     "autoload": {
         "psr-4": {
             "LogicTree\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LogicTree\\Test\\": "tests/"
         }
     }
 }
