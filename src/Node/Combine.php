@@ -5,9 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace LogicTree\Model;
-
-use LogicTree\Model\AbstractModel\AbstractNode;
+namespace LogicTree\Node;
 
 /**
  * Class Combine
@@ -25,14 +23,14 @@ final class Combine extends AbstractNode implements CombineInterface
     private $isInvert;
 
     /**
-     * @var \LogicTree\Model\NodeInterface[]
+     * @var \LogicTree\Node\NodeInterface[]
      */
     private $nodes;
 
     /**
      * @param string $operator
      * @param bool $isInvert [optional] Is false by default.
-     * @param \LogicTree\Model\NodeInterface[] $children [optional] Is empty by default.
+     * @param \LogicTree\Node\NodeInterface[] $children [optional] Is empty by default.
      */
     public function __construct(
         string $operator,

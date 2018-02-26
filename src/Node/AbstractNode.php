@@ -5,10 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace LogicTree\Model\AbstractModel;
-
-use LogicTree\Model\CombineInterface;
-use LogicTree\Model\NodeInterface;
+namespace LogicTree\Node;
 
 /**
  * Class AbstractCondition
@@ -16,7 +13,7 @@ use LogicTree\Model\NodeInterface;
 abstract class AbstractNode implements NodeInterface
 {
     /**
-     * @var \LogicTree\Model\CombineInterface
+     * @var \LogicTree\Node\CombineInterface
      */
     private $parent;
 

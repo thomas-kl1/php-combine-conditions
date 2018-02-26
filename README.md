@@ -32,18 +32,24 @@ require_once __DIR__.'/<path_where_it_has_been_extracted>/autoloader.php';
 
 ## Getting Started
 
-*Documentation in progress!*
-
-The combine conditions library for PHP is tool which helps to build dynamically structured (as tree) conditions.  
+The combine conditions library for PHP is a tool which helps you to build dynamically structured (as tree or graph) conditions.  
 These conditions are able to be combined and customized operators can be provided.  
-This library can be used in many context, as to generate complex SQL conditions, and can be exported to multiple format
-as JSON, XML, FULLTEXT...  
+This library can be used in many context, to execute advanced combination of conditions, to generate some complex SQL
+conditions, or to be exported to multiple formats as JSON, XML, FULLTEXT...  
 An other case to use this library is to execute and process frontend conditional tree (Eg: a user build his conditional
 tree and would like to process the result).
 
+The library has been written in order to allows you to implement it to the right way you want. So, if you implement the
+interfaces from the public API, you can build your own combine conditions structure and continue to execute it via the public
+API services.
+
+The library is written to follow the PSR1/PSR2 coding standards.
+
 ### Main Library Entrance
 
-*No documentation available yet!*
+For a simply use, you'll only need to use the following class: `\LogicTree\LogicTreeFacade`.  
+This class allows you to use the mainly features of the library, as to build a combined conditions, to execute somes, and
+exports them.
 
 ### OperatorPool
 
@@ -61,7 +67,7 @@ The comparator operator is used to determine the result of a boolean expression.
 Does `'A'` and `'B'` are the same thing? I can test with an equality operator: `'A' == 'B'`).*
 
 The default comparator operators are available in: `src/Operator/Comparator`.  
-It's used in the `Condition` object.
+It's used in the `ConditionInterface` definition, known as the `Condition` object.
 
 #### Logical Operator
 
@@ -71,7 +77,7 @@ The logical operator is used to commute many boolean expression (at least two).
 I can check with the following expression `'A' != 'B' AND 'C' != 'D'`.*
 
 The default logical operators are available in: `src/Operator/Logical`.  
-It's used in the `Combine` object.
+It's used in the `CombineInterface` definition, known as the `Combine` object.
 
 #### Override/Add new Operators
 
@@ -104,21 +110,24 @@ $operatorPool->addOperator(
   
 $conditionManager = new \LogicTree\Service\ConditionManager($operatorPool);
 ```
-*Now we are able to use these comparators.*
+Now we are able to use these operators in our code and are availables everywhere in the library.
 
 ### Condition and Combine
 
-These class always implement the `ConditionInterface`. They represent the base model of the library.  
-Because the used pattern here is a composition, you may want to know if the current object is the root or a node, you
+These class always implement the `NodeInterface`. It represent the base model of the library.  
+Because of the composition pattern, you may want to know if the current object is the root or a node, you
 should use the following methods:
 
-- hasParent() : check if the current object has parent or not
-- getParent() : retrieve the current object's parent
+- `hasParent()` : check if the current object has parent or not.
+- `getParent()` : retrieve the current object's parent.
+- `ConditionInterface` : is an instance of, represent the last/final node.
+- `CombineInterface` : is an instance of, represent the container node.
 
 #### Condition
 
-`Condition`: it represents an expression with a comparator operator.  
-The class is: `\LogicTree\Model\Condition`  
+`ConditionInterface`: it represents an expression with a comparator operator.  
+The interface is: `\LogicTree\Model\ConditionInterface`.  
+The concrete default class is: `\LogicTree\Model\Condition`.  
 It requires a mixed value to compared by an operator to a value from the data source.
 
 The operator is a `string` which is the code of the wanted operator.
@@ -128,25 +137,29 @@ The value to compare must be a `mixed` value.
 #### Combine
 
 `Combine`: it represents an expression with a logical operator.  
-The class is: `\LogicTree\Model\Combine`
+The interface is: `\LogicTree\Model\CombineInterface`.
+The concrete default class is: `\LogicTree\Model\Combine`.  
 It requires at least two conditions and/or combines to commute with a logical operator.
 
 The operator is a `string` which is the code of the wanted operator.  
 The conditions/combine must be an instance of `ConditionInterface`.    
 
-You can add `Condition` and/or `Combine` to a `Combine` object with the following methods:
+You can add a `NodeInterface` to the `CombineInterface` with the following methods:
 
-- addCondition(ConditionInterface $condition) : add a new condition to the combine object 
-- setConditions(array $conditions) : replace all conditions by the new ones
+- `addChild(NodeInterface $node)` : add a new node child to the parent node object. 
+- `setChildren(array $nodes)` : replace the children by the new ones.
 
-If you want to invert the result of the combination of conditions, you can specify to the `Combine` object that the 
-result should actually be inverted:
+If you want to invert the result of the combination of conditions, you can specify to the `CombineInterface`
+object that the result should actually be inverted:
 
-- setIsInvert(bool $isInvert)
+- `setIsInvert(bool $isInvert)`.
 
 ### Execute the Combine Conditions
 
-*No documentation available yet!*
+In order to execute the combined conditions, you must use the `\LogicTree\Service\ConditionManager` class.  
+This service allows to perform many actions on your `NodeInterface` object.  
+*Actually only the `execute` method is available from the public API.*  
+Anyway, the `execute` method allows you to determine the final result of your combination of conditions.
 
 ### Export the Combine Conditions to Format
 
@@ -154,11 +167,13 @@ result should actually be inverted:
 
 ## Running the tests
 
+The tests are placed in the `tests` directory, at the root of the library.  
+
 *No tests available yet!*
 
 ## Contributing
 
-Any help is welcome, feel free to raise issues and open pull requests.
+Any help is welcome, feel free to raise issues or to open pull requests. Further details in the [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ### TODO List
 
@@ -171,7 +186,10 @@ Implement the following comparator operators:
       - array("seq" => $stringValue)
       - array("sneq" => $stringValue)
 
-ToString methods, in order to render the combine conditions in full text / different formats.
+ToString methods, in order to render the combine conditions in full text / different formats.  
+Have to: AdapterPool (toFormat) - ConverterPool (getSymbol, getExpression, getFullExpression).  
+Possibility to add custom type node and process them in the services.  
+Study Namespace and Lib Name: [trends](https://trends.google.fr/trends/explore?q=filter%20criteria,group%20conditions,complex%20conditions)  
 
 ## Authors
 
@@ -181,4 +199,4 @@ See also the list of [contributors](https://github.com/thomas-blackbird/php-comb
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

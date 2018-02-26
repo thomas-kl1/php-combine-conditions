@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace LogicTree\Model;
+namespace LogicTree;
 
 /**
  * Class DataSource
@@ -40,7 +40,7 @@ class DataSource
      * Set the new data
      *
      * @param array $data
-     * @return \LogicTree\Model\DataSource
+     * @return \LogicTree\DataSource
      */
     public function setData(array $data): self
     {
@@ -52,7 +52,7 @@ class DataSource
      * Add and replace data on duplicate
      *
      * @param array $data
-     * @return \LogicTree\Model\DataSource
+     * @return \LogicTree\DataSource
      */
     public function addData(array $data): self
     {
@@ -64,7 +64,7 @@ class DataSource
      * Remove the data by keys
      *
      * @param array $keys
-     * @return \LogicTree\Model\DataSource
+     * @return \LogicTree\DataSource
      */
     public function unsetData(array $keys): self
     {
@@ -90,7 +90,7 @@ class DataSource
      *
      * @param string $key
      * @param mixed $value
-     * @return \LogicTree\Model\DataSource
+     * @return \LogicTree\DataSource
      */
     public function setValue(string $key, mixed $value): self
     {
@@ -102,7 +102,7 @@ class DataSource
      * Remove the data value
      *
      * @param string $key
-     * @return \LogicTree\Model\DataSource
+     * @return \LogicTree\DataSource
      */
     public function unsetValue(string $key): self
     {

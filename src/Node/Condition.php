@@ -5,9 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace LogicTree\Model;
-
-use LogicTree\Model\AbstractModel\AbstractNode;
+namespace LogicTree\Node;
 
 /**
  * Class Condition

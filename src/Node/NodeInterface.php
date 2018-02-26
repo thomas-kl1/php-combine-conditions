@@ -3,7 +3,7 @@
  * Copyright © 2018 Uniwax, All right reserved.
  */
 
-namespace LogicTree\Model;
+namespace LogicTree\Node;
 
 /**
  * Interface NodeInterface
@@ -22,21 +22,21 @@ interface NodeInterface
      * Set the operator
      *
      * @param string $operator
-     * @return \LogicTree\Model\ConditionInterface
+     * @return \LogicTree\Node\ConditionInterface
      */
     public function setOperator(string $operator);
 
     /**
      * Retrieve the parent combine
      *
-     * @return \LogicTree\Model\CombineInterface
+     * @return \LogicTree\Node\CombineInterface
      */
     public function getParent(): CombineInterface;
 
     /**
      * Set the parent combine
      *
-     * @param \LogicTree\Model\CombineInterface $condition
+     * @param \LogicTree\Node\CombineInterface $condition
      * @return mixed
      */
     public function setParent(CombineInterface $condition);

@@ -4,7 +4,7 @@
  * See LICENSE bundled with this library for license details.
  */
 
-namespace LogicTree\Model;
+namespace LogicTree\Node;
 
 /**
  * Interface ConditionInterface
@@ -23,7 +23,7 @@ interface ConditionInterface extends NodeInterface
      * Set the value key identifier to compare
      *
      * @param string $identifier
-     * @return \LogicTree\Model\ConditionInterface
+     * @return \LogicTree\Node\ConditionInterface
      */
     public function setValueIdentifier(string $identifier): ConditionInterface;
 
@@ -38,7 +38,7 @@ interface ConditionInterface extends NodeInterface
      * Set the value to compare
      *
      * @param mixed $value
-     * @return \LogicTree\Model\ConditionInterface
+     * @return \LogicTree\Node\ConditionInterface
      */
     public function setValueCompare(mixed $value): ConditionInterface;
 }

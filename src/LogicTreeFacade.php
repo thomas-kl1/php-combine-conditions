@@ -7,8 +7,7 @@ declare(strict_types=1);
 
 namespace LogicTree;
 
-use LogicTree\Model\DataSource;
-use LogicTree\Model\NodeInterface;
+use LogicTree\Node\NodeInterface;
 use LogicTree\Operator\OperatorInterface;
 use LogicTree\Operator\OperatorPool;
 use LogicTree\Service\ConditionManager;
@@ -60,7 +59,7 @@ class LogicTreeFacade
      * Create a new data source
      *
      * @param array $data
-     * @return \LogicTree\Model\DataSource
+     * @return \LogicTree\DataSource
      */
     public function createDataSource(array $data): DataSource
     {
@@ -70,8 +69,8 @@ class LogicTreeFacade
     /**
      * Execute the logic tree structure conditions
      *
-     * @param \LogicTree\Model\NodeInterface $node
-     * @param \LogicTree\Model\DataSource $dataSource
+     * @param \LogicTree\Node\NodeInterface $node
+     * @param \LogicTree\DataSource $dataSource
      * @return bool
      */
     public function executeCombineConditions(NodeInterface $node, DataSource $dataSource): bool
@@ -100,7 +99,7 @@ class LogicTreeFacade
      *
      * @param string $format
      * @param mixed $node
-     * @return \LogicTree\Model\NodeInterface
+     * @return \LogicTree\Node\NodeInterface
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function convertFormat(string $format, mixed $node): NodeInterface

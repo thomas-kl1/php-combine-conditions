@@ -3,7 +3,7 @@
  * Copyright © 2018 Uniwax, All right reserved.
  */
 
-namespace LogicTree\Model;
+namespace LogicTree\Node;
 
 /**
  * Interface CombineInterface
@@ -14,23 +14,23 @@ interface CombineInterface extends NodeInterface
     /**
      * Retrieve the conditions as array of conditions or combinations
      *
-     * @return \LogicTree\Model\NodeInterface[]
+     * @return \LogicTree\Node\NodeInterface[]
      */
     public function getChildren(): array;
 
     /**
      * Set the logic structure as conditions or combinations
      *
-     * @param \LogicTree\Model\NodeInterface[] $children
-     * @return \LogicTree\Model\Combine
+     * @param \LogicTree\Node\NodeInterface[] $children
+     * @return \LogicTree\Node\Combine
      */
     public function setChildren(array $children): CombineInterface;
 
     /**
      * Add a logic structure as condition or combination
      *
-     * @param \LogicTree\Model\NodeInterface $node
-     * @return \LogicTree\Model\Combine
+     * @param \LogicTree\Node\NodeInterface $node
+     * @return \LogicTree\Node\Combine
      */
     public function addChild(NodeInterface $node): CombineInterface;
 
@@ -59,7 +59,7 @@ interface CombineInterface extends NodeInterface
      * Set is result of combination inverted
      *
      * @param bool $isInvert
-     * @return \LogicTree\Model\Combine
+     * @return \LogicTree\Node\Combine
      */
     public function setIsInvert(bool $isInvert): CombineInterface;
 }

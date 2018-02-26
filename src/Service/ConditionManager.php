@@ -7,10 +7,10 @@ declare(strict_types=1);
 
 namespace LogicTree\Service;
 
-use LogicTree\Model\CombineInterface;
-use LogicTree\Model\ConditionInterface;
-use LogicTree\Model\DataSource;
-use LogicTree\Model\NodeInterface;
+use LogicTree\DataSource;
+use LogicTree\Node\CombineInterface;
+use LogicTree\Node\ConditionInterface;
+use LogicTree\Node\NodeInterface;
 use LogicTree\Operator\OperatorPool;
 
 /**
@@ -37,8 +37,8 @@ class ConditionManager
     /**
      * Execute the logic tree structure conditions
      *
-     * @param \LogicTree\Model\NodeInterface $node
-     * @param \LogicTree\Model\DataSource $dataSource
+     * @param \LogicTree\Node\NodeInterface $node
+     * @param \LogicTree\DataSource $dataSource
      * @return bool
      */
     public function execute(NodeInterface $node, DataSource $dataSource): bool
@@ -59,8 +59,8 @@ class ConditionManager
     /**
      * Execute the combination of conditions expressions
      *
-     * @param \LogicTree\Model\CombineInterface $combine
-     * @param \LogicTree\Model\DataSource $dataSource
+     * @param \LogicTree\Node\CombineInterface $combine
+     * @param \LogicTree\DataSource $dataSource
      * @return bool
      */
     private function executeCombine(CombineInterface $combine, DataSource $dataSource): bool
@@ -78,7 +78,7 @@ class ConditionManager
     /**
      * Execute the condition expression
      *
-     * @param \LogicTree\Model\ConditionInterface $condition
+     * @param \LogicTree\Node\ConditionInterface $condition
      * @param mixed $value
      * @return bool
      */
