@@ -27,7 +27,7 @@ class ConditionManager
     /**
      * @param \LogicTree\Operator\OperatorPool|null $operatorPool
      */
-    public function __construct(OperatorPool $operatorPool = null)
+    public function __construct(?OperatorPool $operatorPool = null)
     {
         if ($operatorPool === null) {
             $this->operatorPool = new OperatorPool();

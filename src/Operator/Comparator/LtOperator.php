@@ -17,7 +17,7 @@ use LogicTree\Operator\OperatorInterface;
  */
 final class LtOperator extends AbstractCompareTwo implements OperatorInterface
 {
-    const CODE = 'lt';
+    public const CODE = 'lt';
 
     /**
      * {@inheritdoc}

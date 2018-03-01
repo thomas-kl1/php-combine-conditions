@@ -19,9 +19,9 @@ class DataSource
     private $data;
 
     /**
-     * @param array $data [optional]
+     * @param iterable $data [optional]
      */
-    public function __construct(array $data = [])
+    public function __construct(iterable $data = [])
     {
         $this->setData($data);
     }
@@ -39,22 +39,24 @@ class DataSource
     /**
      * Set the new data
      *
-     * @param array $data
+     * @param iterable $data
      * @return \LogicTree\DataSource
      */
-    public function setData(array $data): self
+    public function setData(iterable $data): DataSource
     {
-        $this->data = $data;
+        foreach ($data as $key => $value) {
+            $this->setValue($key, $value);
+        }
         return $this;
     }
 
     /**
      * Add and replace data on duplicate
      *
-     * @param array $data
+     * @param iterable $data
      * @return \LogicTree\DataSource
      */
-    public function addData(array $data): self
+    public function addData(iterable $data): DataSource
     {
         $this->data = array_merge($this->getData(), $data);
         return $this;
@@ -66,7 +68,7 @@ class DataSource
      * @param array $keys
      * @return \LogicTree\DataSource
      */
-    public function unsetData(array $keys): self
+    public function unsetData(array $keys): DataSource
     {
         foreach ($keys as $key) {
             $this->unsetValue($key);
@@ -80,7 +82,7 @@ class DataSource
      * @param string $key
      * @return mixed|null
      */
-    public function getValue(string $key): mixed
+    public function getValue(string $key): ?mixed
     {
         return $this->data[$key] ?? null;
     }
@@ -92,7 +94,7 @@ class DataSource
      * @param mixed $value
      * @return \LogicTree\DataSource
      */
-    public function setValue(string $key, mixed $value): self
+    public function setValue(string $key, mixed $value): DataSource
     {
         $this->data[$key] = $value;
         return $this;
@@ -104,7 +106,7 @@ class DataSource
      * @param string $key
      * @return \LogicTree\DataSource
      */
-    public function unsetValue(string $key): self
+    public function unsetValue(string $key): DataSource
     {
         unset($this->data[$key]);
         return $this;

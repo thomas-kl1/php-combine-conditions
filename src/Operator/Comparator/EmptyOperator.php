@@ -17,7 +17,7 @@ use LogicTree\Operator\OperatorInterface;
  */
 final class EmptyOperator extends AbstractCompareOne implements OperatorInterface
 {
-    const CODE = 'empty';
+    public const CODE = 'empty';
 
     /**
      * {@inheritdoc}

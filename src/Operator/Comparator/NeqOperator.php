@@ -17,7 +17,7 @@ use LogicTree\Operator\OperatorInterface;
  */
 final class NeqOperator extends AbstractCompareTwo implements OperatorInterface
 {
-    const CODE = 'neq';
+    public const CODE = 'neq';
 
     /**
      * {@inheritdoc}

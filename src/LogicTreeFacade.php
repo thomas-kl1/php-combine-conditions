@@ -30,7 +30,7 @@ class LogicTreeFacade
     /**
      * @param \LogicTree\Service\ConditionManager|null $conditionManager
      */
-    public function __construct(ConditionManager $conditionManager = null)
+    public function __construct(?ConditionManager $conditionManager = null)
     {
         $this->conditionManager = $conditionManager;
         $this->operatorPool = new OperatorPool();
@@ -48,7 +48,7 @@ class LogicTreeFacade
      * @param \LogicTree\Operator\OperatorInterface $operator
      * @return \LogicTree\LogicTreeFacade
      */
-    public function addOperator(string $type, string $operatorCode, OperatorInterface $operator): self
+    public function addOperator(string $type, string $operatorCode, OperatorInterface $operator): LogicTreeFacade
     {
         $this->operatorPool->addOperator($type, $operatorCode, $operator);
         $this->instantiateConditionManager();
@@ -58,10 +58,10 @@ class LogicTreeFacade
     /**
      * Create a new data source
      *
-     * @param array $data
+     * @param iterable $data
      * @return \LogicTree\DataSource
      */
-    public function createDataSource(array $data): DataSource
+    public function createDataSource(iterable $data): DataSource
     {
         return new DataSource($data);
     }
@@ -83,10 +83,10 @@ class LogicTreeFacade
      *
      * @param string $format
      * @param mixed $node
-     * @param array $dataSource
+     * @param iterable $dataSource
      * @return bool
      */
-    public function executeCombineConditionsFormat(string $format, mixed $node, array $dataSource): bool
+    public function executeCombineConditionsFormat(string $format, mixed $node, iterable $dataSource): bool
     {
         return $this->conditionManager->execute(
             $this->convertFormat($format, $node),

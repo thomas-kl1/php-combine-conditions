@@ -31,14 +31,14 @@ use LogicTree\Operator\Logical\XorOperator;
  */
 final class OperatorPool
 {
-    const TYPE_LOGICAL = 'logical';
-    const TYPE_COMPARATOR = 'comparator';
+    public const TYPE_LOGICAL = 'logical';
+    public const TYPE_COMPARATOR = 'comparator';
 
     /**
      * @var array
      */
     private $defaultOperators = [
-        self::TYPE_COMPARATOR => [
+        OperatorPool::TYPE_COMPARATOR => [
             EmptyOperator::CODE => EmptyOperator::class,
             EqOperator::CODE => EqOperator::class,
             GteqOperator::CODE => GteqOperator::class,
@@ -51,7 +51,7 @@ final class OperatorPool
             NullOperator::CODE => NullOperator::class,
             RegexpOperator::CODE => RegexpOperator::class,
         ],
-        self::TYPE_LOGICAL => [
+        OperatorPool::TYPE_LOGICAL => [
             AndOperator::CODE => AndOperator::class,
             OrOperator::CODE => OrOperator::class,
             XorOperator::CODE => XorOperator::class,
@@ -84,10 +84,10 @@ final class OperatorPool
      * Retrieve an operator by its type and code
      *
      * @param string $type
-     * @param $operatorCode
+     * @param string $operatorCode
      * @return \LogicTree\Operator\OperatorInterface
      */
-    public function getOperator(string $type, $operatorCode): OperatorInterface
+    public function getOperator(string $type, string $operatorCode): OperatorInterface
     {
         if (!isset($this->operators[$type], $this->operators[$type][$operatorCode])) {
             throw new \LogicException(
@@ -106,7 +106,7 @@ final class OperatorPool
      * @param \LogicTree\Operator\OperatorInterface $operator
      * @return \LogicTree\Operator\OperatorPool
      */
-    public function addOperator(string $type, string $operatorCode, OperatorInterface $operator): self
+    public function addOperator(string $type, string $operatorCode, OperatorInterface $operator): OperatorPool
     {
         if (!isset($this->operators[$type], $this->operators[$type][$operatorCode])) {
             if (!isset($this->operators[$type])) {

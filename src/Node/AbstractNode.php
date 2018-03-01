@@ -20,7 +20,7 @@ abstract class AbstractNode implements NodeInterface
     /**
      * {@inheritdoc}
      */
-    public function getParent(): CombineInterface
+    public function getParent(): ?CombineInterface
     {
         return $this->parent;
     }
@@ -28,7 +28,7 @@ abstract class AbstractNode implements NodeInterface
     /**
      * {@inheritdoc}
      */
-    public function setParent(CombineInterface $combine): NodeInterface
+    public function setParent(?CombineInterface $combine): NodeInterface
     {
         $this->parent = $combine;
         return $this;

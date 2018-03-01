@@ -17,7 +17,7 @@ use LogicTree\Operator\OperatorInterface;
  */
 final class GteqOperator extends AbstractCompareTwo implements OperatorInterface
 {
-    const CODE = 'gteq';
+    public const CODE = 'gteq';
 
     /**
      * {@inheritdoc}

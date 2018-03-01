@@ -17,7 +17,7 @@ use LogicTree\Operator\OperatorInterface;
  */
 final class RegexpOperator extends AbstractCompareTwo implements OperatorInterface
 {
-    const CODE = 'regexp';
+    public const CODE = 'regexp';
 
     /**
      * {@inheritdoc}

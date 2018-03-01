@@ -18,7 +18,7 @@ use LogicTree\Operator\OperatorInterface;
  */
 final class OrOperator implements OperatorInterface
 {
-    const CODE = 'or';
+    public const CODE = 'or';
 
     /**
      * {@inheritdoc}

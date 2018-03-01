@@ -17,7 +17,7 @@ use LogicTree\Operator\OperatorInterface;
  */
 final class NinIdenOperator extends AbstractCompareTwo implements OperatorInterface
 {
-    const CODE = 'iniden';
+    public const CODE = 'iniden';
 
     /**
      * {@inheritdoc}

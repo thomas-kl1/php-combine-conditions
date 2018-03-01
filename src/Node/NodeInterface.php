@@ -29,17 +29,17 @@ interface NodeInterface
     /**
      * Retrieve the parent combine
      *
-     * @return \LogicTree\Node\CombineInterface
+     * @return \LogicTree\Node\CombineInterface|null
      */
-    public function getParent(): CombineInterface;
+    public function getParent(): ?CombineInterface;
 
     /**
      * Set the parent combine
      *
-     * @param \LogicTree\Node\CombineInterface $condition
+     * @param \LogicTree\Node\CombineInterface|null $condition
      * @return mixed
      */
-    public function setParent(CombineInterface $condition);
+    public function setParent(?CombineInterface $condition);
 
     /**
      * Check if it has an existing parent

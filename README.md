@@ -9,6 +9,23 @@
 
 Generic representation of conditional structure/tree library for PHP.
 
+ - [Installation](#installation)
+ - [Getting Started](#getting-started)
+   - [Main Library Entrance](#main-library-entrance)
+   - [OperatorPool](#operatorpool)
+     - [Comparator Operator](#comparator-operator)
+     - [Logical Operator](#logical-operator)
+     - [Override/Add new Operators](#override/add-new-operators)
+   - [Condition and Combine](#condition-and-combine)
+     - [Condition](#condition)
+     - [Combine](#combine)
+   - [Execute the Combine Conditions](#execute-the-combine-conditions)
+   - [Export the Combine Conditions to Format](#export-the-combine-conditions-to-format)
+ - [Running the tests](#running-the-tests)
+ - [Contributing](#contributing)
+ - [Authors](#authors)
+ - [License](#license)
+
 ## Installation
 
 ### Composer (recommended)
