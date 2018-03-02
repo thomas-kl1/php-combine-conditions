@@ -14,11 +14,15 @@ namespace LogicTree;
 class DataSource
 {
     /**
+     * Associative data array by key pair value
+     *
      * @var array
      */
     private $data;
 
     /**
+     * DataSource constructor
+     *
      * @param iterable $data [optional]
      */
     public function __construct(iterable $data = [])

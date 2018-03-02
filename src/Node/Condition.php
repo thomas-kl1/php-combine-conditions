@@ -13,21 +13,29 @@ namespace LogicTree\Node;
 final class Condition extends AbstractNode implements ConditionInterface
 {
     /**
+     * Operator code
+     *
      * @var string
      */
     private $operator;
 
     /**
+     * Key value identifier in the data source
+     *
      * @var string
      */
     private $valueIdentifier;
 
     /**
+     * Value to compare to the data source value
+     *
      * @var mixed
      */
     private $valueCompare;
 
     /**
+     * Condition constructor
+     *
      * @param string $valueIdentifier
      * @param string $operator
      * @param mixed $valueCompare

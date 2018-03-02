@@ -13,21 +13,29 @@ namespace LogicTree\Node;
 final class Combine extends AbstractNode implements CombineInterface
 {
     /**
+     * Operator code
+     *
      * @var string
      */
     private $operator;
 
     /**
+     * Invert final result flag
+     *
      * @var bool
      */
     private $isInvert;
 
     /**
+     * Nodes elements array
+     *
      * @var \LogicTree\Node\NodeInterface[]
      */
     private $nodes;
 
     /**
+     * Combine constructor
+     *
      * @param string $operator
      * @param bool $isInvert [optional] Is false by default.
      * @param \LogicTree\Node\NodeInterface[] $children [optional] Is empty by default.

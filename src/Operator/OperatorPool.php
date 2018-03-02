@@ -35,6 +35,8 @@ final class OperatorPool
     public const TYPE_COMPARATOR = 'comparator';
 
     /**
+     * Default operators code and class name listed by types
+     *
      * @var array
      */
     private $defaultOperators = [
@@ -62,12 +64,16 @@ final class OperatorPool
     ];
 
     /**
+     * Operators list
+     *
      * @var \LogicTree\Operator\OperatorInterface[]
      */
     private $operators = [];
 
     /**
-     * @param array $operators
+     * OperatorPool constructor
+     *
+     * @param array $operators Operators object listed by types
      */
     public function __construct(array $operators = [])
     {

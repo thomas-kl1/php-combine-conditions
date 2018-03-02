@@ -190,7 +190,7 @@ The tests are placed in the `tests` directory, at the root of the library.
 
 ## Contributing
 
-Any help is welcome, feel free to raise issues or to open pull requests. Further details in the [CONTRIBUTING.md](CONTRIBUTING.md).
+Any help is welcome, feel free to raise issues or to open pull requests. Further details in the [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
 ### TODO List
 

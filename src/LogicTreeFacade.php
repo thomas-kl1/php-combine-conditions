@@ -18,16 +18,22 @@ use LogicTree\Service\ConditionManager;
 class LogicTreeFacade
 {
     /**
+     * Combine Conditions Manager
+     *
      * @var \LogicTree\Service\ConditionManager
      */
     private $conditionManager;
 
     /**
+     * Operator Pool
+     *
      * @var \LogicTree\Operator\OperatorPool
      */
     private $operatorPool;
 
     /**
+     * LogicTreeFacade constructor
+     *
      * @param \LogicTree\Service\ConditionManager|null $conditionManager
      */
     public function __construct(?ConditionManager $conditionManager = null)

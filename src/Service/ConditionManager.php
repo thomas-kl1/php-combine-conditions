@@ -20,11 +20,15 @@ use LogicTree\Operator\OperatorPool;
 class ConditionManager
 {
     /**
+     * Operator Pool
+     *
      * @var \LogicTree\Operator\OperatorPool
      */
     private $operatorPool;
 
     /**
+     * Combine Condition Manager constructor
+     *
      * @param \LogicTree\Operator\OperatorPool|null $operatorPool
      */
     public function __construct(?OperatorPool $operatorPool = null)
