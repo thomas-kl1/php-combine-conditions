@@ -25,7 +25,7 @@ abstract class AbstractCompareOne implements OperatorInterface
             throw new \InvalidArgumentException('1 expression expected, ' . $count . ' given.');
         }
 
-        return $this->executeComparison($expressions[1]);
+        return $this->executeComparison($expressions[0]);
     }
 
     /**

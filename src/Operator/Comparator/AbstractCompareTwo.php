@@ -25,7 +25,7 @@ abstract class AbstractCompareTwo implements OperatorInterface
             throw new \InvalidArgumentException('2 expressions expected, ' . $count . ' given.');
         }
 
-        return $this->executeComparison($expressions[1], $expressions[2]);
+        return $this->executeComparison($expressions[0], $expressions[1]);
     }
 
     /**

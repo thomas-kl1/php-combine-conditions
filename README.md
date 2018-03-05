@@ -206,7 +206,9 @@ Implement the following comparator operators:
 ToString methods, in order to render the combine conditions in full text / different formats.  
 Have to: AdapterPool (toFormat) - ConverterPool (getSymbol, getExpression, getFullExpression).  
 Possibility to add custom type node and process them in the services.  
-Study Namespace and Lib Name: [trends](https://trends.google.fr/trends/explore?q=filter%20criteria,group%20conditions,complex%20conditions)  
+Study Namespace and Lib Name: [trends](https://trends.google.fr/trends/explore?q=filter%20criteria,group%20conditions,complex%20conditions)
+
+Add tests and examples: from scratch, with and without new operators, and execution (with expected results).   
 
 ## Authors
 
