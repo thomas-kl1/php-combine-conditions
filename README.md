@@ -21,6 +21,7 @@ Generic representation of conditional structure/tree library for PHP.
      - [Combine](#combine)
    - [Execute the Combine Conditions](#execute-the-combine-conditions)
    - [Export the Combine Conditions to Format](#export-the-combine-conditions-to-format)
+ - [Examples](#examples)
  - [Running the tests](#running-the-tests)
  - [Contributing](#contributing)
  - [Authors](#authors)
@@ -181,6 +182,10 @@ Anyway, the `execute` method allows you to determine the final result of your co
 ### Export the Combine Conditions to Format
 
 *No documentation available yet!* 
+
+## Examples
+
+Examples of code usage cases are available in this [file](./examples/index.php).
 
 ## Running the tests
 

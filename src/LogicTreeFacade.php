@@ -38,16 +38,13 @@ class LogicTreeFacade
      */
     public function __construct(?ConditionManager $conditionManager = null)
     {
-        // ToDo: /!\ Warning /!\
+        // ToDo: /!\ Warning /!\ Known Issue
         // If conditionManager provided, when add new operators,
         // add operators to the operator pool of the condition manager
-        // Warning: do not break encapsulation !!!
-        $this->conditionManager = $conditionManager;
-        $this->operatorPool = new OperatorPool();
-
-        if ($conditionManager === null) {
-            $this->conditionManager = new ConditionManager($this->operatorPool);
-        }
+        // Warning: do not break encapsulation !!! => use pool as singleton
+        $this->conditionManager = ($conditionManager === null)
+            ? new ConditionManager($this->operatorPool)
+            : $conditionManager;
     }
 
     /**

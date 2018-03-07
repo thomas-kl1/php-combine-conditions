@@ -33,11 +33,7 @@ class ConditionManager
      */
     public function __construct(?OperatorPool $operatorPool = null)
     {
-        $this->operatorPool = $operatorPool;
-
-        if ($operatorPool === null) {
-            $this->operatorPool = new OperatorPool();
-        }
+        $this->operatorPool = ($operatorPool === null) ? new OperatorPool() : $operatorPool;
     }
 
     /**
