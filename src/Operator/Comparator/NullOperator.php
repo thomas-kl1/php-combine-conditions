@@ -22,7 +22,7 @@ final class NullOperator extends AbstractCompareOne implements OperatorInterface
     /**
      * {@inheritdoc}
      */
-    public function executeComparison(mixed $expression): bool
+    public function executeComparison($expression): bool
     {
         return ($expression === null);
     }

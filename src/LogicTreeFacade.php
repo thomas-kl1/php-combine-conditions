@@ -38,11 +38,15 @@ class LogicTreeFacade
      */
     public function __construct(?ConditionManager $conditionManager = null)
     {
+        // ToDo: /!\ Warning /!\
+        // If conditionManager provided, when add new operators,
+        // add operators to the operator pool of the condition manager
+        // Warning: do not break encapsulation !!!
         $this->conditionManager = $conditionManager;
         $this->operatorPool = new OperatorPool();
 
         if ($conditionManager === null) {
-            $this->instantiateConditionManager();
+            $this->conditionManager = new ConditionManager($this->operatorPool);
         }
     }
 
@@ -57,7 +61,6 @@ class LogicTreeFacade
     public function addOperator(string $type, string $operatorCode, OperatorInterface $operator): LogicTreeFacade
     {
         $this->operatorPool->addOperator($type, $operatorCode, $operator);
-        $this->instantiateConditionManager();
         return $this;
     }
 
@@ -92,7 +95,7 @@ class LogicTreeFacade
      * @param iterable $dataSource
      * @return bool
      */
-    public function executeCombineConditionsFormat(string $format, mixed $node, iterable $dataSource): bool
+    public function executeCombineConditionsFormat(string $format, $node, iterable $dataSource): bool
     {
         return $this->conditionManager->execute(
             $this->convertFormat($format, $node),
@@ -108,19 +111,9 @@ class LogicTreeFacade
      * @return \LogicTree\Node\NodeInterface
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function convertFormat(string $format, mixed $node): NodeInterface
+    public function convertFormat(string $format, $node): NodeInterface
     {
         //todo implement method.
         throw new \LogicException('Not implemented yet!');
-    }
-
-    /**
-     * Create a new instance of condition manager
-     *
-     * @return void
-     */
-    private function instantiateConditionManager(): void
-    {
-        $this->conditionManager = new ConditionManager($this->operatorPool);
     }
 }

@@ -34,5 +34,5 @@ abstract class AbstractCompareOne implements OperatorInterface
      * @param mixed $expression
      * @return bool
      */
-    abstract public function executeComparison(mixed $expression): bool;
+    abstract public function executeComparison($expression): bool;
 }

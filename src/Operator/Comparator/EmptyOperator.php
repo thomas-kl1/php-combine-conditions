@@ -22,7 +22,7 @@ final class EmptyOperator extends AbstractCompareOne implements OperatorInterfac
     /**
      * {@inheritdoc}
      */
-    public function executeComparison(mixed $expression): bool
+    public function executeComparison($expression): bool
     {
         return empty($expression);
     }

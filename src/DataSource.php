@@ -86,7 +86,7 @@ class DataSource
      * @param string $key
      * @return mixed|null
      */
-    public function getValue(string $key): ?mixed
+    public function getValue(string $key)
     {
         return $this->data[$key] ?? null;
     }
@@ -98,7 +98,7 @@ class DataSource
      * @param mixed $value
      * @return \LogicTree\DataSource
      */
-    public function setValue(string $key, mixed $value): DataSource
+    public function setValue(string $key, $value): DataSource
     {
         $this->data[$key] = $value;
         return $this;

@@ -22,7 +22,7 @@ final class NinOperator extends AbstractCompareTwo implements OperatorInterface
     /**
      * {@inheritdoc}
      */
-    public function executeComparison(mixed $expr1, mixed $expr2): bool
+    public function executeComparison($expr1, $expr2): bool
     {
         return !in_array($expr1, $expr2);
     }

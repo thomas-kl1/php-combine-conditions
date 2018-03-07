@@ -32,7 +32,7 @@ interface ConditionInterface extends NodeInterface
      *
      * @return mixed
      */
-    public function getValueCompare(): mixed;
+    public function getValueCompare();
 
     /**
      * Set the value to compare
@@ -40,5 +40,5 @@ interface ConditionInterface extends NodeInterface
      * @param mixed $value
      * @return \LogicTree\Node\ConditionInterface
      */
-    public function setValueCompare(mixed $value): ConditionInterface;
+    public function setValueCompare($value): ConditionInterface;
 }

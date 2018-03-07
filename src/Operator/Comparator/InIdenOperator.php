@@ -22,7 +22,7 @@ final class InIdenOperator extends AbstractCompareTwo implements OperatorInterfa
     /**
      * {@inheritdoc}
      */
-    public function executeComparison(mixed $expr1, mixed $expr2): bool
+    public function executeComparison($expr1, $expr2): bool
     {
         return in_array($expr1, $expr2, true);
     }

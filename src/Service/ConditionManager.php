@@ -33,6 +33,8 @@ class ConditionManager
      */
     public function __construct(?OperatorPool $operatorPool = null)
     {
+        $this->operatorPool = $operatorPool;
+
         if ($operatorPool === null) {
             $this->operatorPool = new OperatorPool();
         }
@@ -86,7 +88,7 @@ class ConditionManager
      * @param mixed $value
      * @return bool
      */
-    private function executeCondition(ConditionInterface $condition, mixed $value): bool
+    private function executeCondition(ConditionInterface $condition, $value): bool
     {
         $operator = $this->operatorPool->getOperator(OperatorPool::TYPE_COMPARATOR, $condition->getOperator());
 

@@ -43,7 +43,7 @@ final class Condition extends AbstractNode implements ConditionInterface
     public function __construct(
         string $valueIdentifier,
         string $operator,
-        mixed $valueCompare
+        $valueCompare
     ) {
         $this->setValueIdentifier($valueIdentifier);
         $this->setOperator($operator);
@@ -87,7 +87,7 @@ final class Condition extends AbstractNode implements ConditionInterface
     /**
      * {@inheritdoc}
      */
-    public function getValueCompare(): mixed
+    public function getValueCompare()
     {
         return $this->valueCompare;
     }
@@ -95,7 +95,7 @@ final class Condition extends AbstractNode implements ConditionInterface
     /**
      * {@inheritdoc}
      */
-    public function setValueCompare(mixed $value): ConditionInterface
+    public function setValueCompare($value): ConditionInterface
     {
         $this->valueCompare = $value;
         return $this;

@@ -35,5 +35,5 @@ abstract class AbstractCompareTwo implements OperatorInterface
      * @param mixed $expr2
      * @return bool
      */
-    abstract public function executeComparison(mixed $expr1, mixed $expr2): bool;
+    abstract public function executeComparison($expr1, $expr2): bool;
 }

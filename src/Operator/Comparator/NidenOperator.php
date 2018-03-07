@@ -22,7 +22,7 @@ final class NidenOperator extends AbstractCompareTwo implements OperatorInterfac
     /**
      * {@inheritdoc}
      */
-    public function executeComparison(mixed $expr1, mixed $expr2): bool
+    public function executeComparison($expr1, $expr2): bool
     {
         return ($expr1 !== $expr2);
     }
