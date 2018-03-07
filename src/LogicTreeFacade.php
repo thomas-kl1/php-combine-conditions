@@ -112,8 +112,7 @@ class LogicTreeFacade
     public function convertFormat(
         /** @scrutinizer ignore-unused */ string $format,
         /** @scrutinizer ignore-unused */ $node
-    ): NodeInterface
-    {
+    ): NodeInterface {
         //todo implement method.
         throw new \LogicException('Not implemented yet!');
     }
