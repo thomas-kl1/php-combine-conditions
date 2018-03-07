@@ -75,6 +75,9 @@ final class Combine extends AbstractNode implements CombineInterface
      */
     public function addChild(NodeInterface $condition): CombineInterface
     {
+        if ($condition === $this) {
+            throw new \LogicException('Child node cannot be the current instance of itself.');
+        }
         $condition->setParent($this);
         $this->nodes[] = $condition;
         return $this;

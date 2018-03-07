@@ -42,6 +42,7 @@ class LogicTreeFacade
         // If conditionManager provided, when add new operators,
         // add operators to the operator pool of the condition manager
         // Warning: do not break encapsulation !!! => use pool as singleton
+        $this->operatorPool = new OperatorPool();
         $this->conditionManager = ($conditionManager === null)
             ? new ConditionManager($this->operatorPool)
             : $conditionManager;
