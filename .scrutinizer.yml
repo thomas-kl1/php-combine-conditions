@@ -1,0 +1,33 @@
+build:
+  environment:
+    php:
+      version:
+        - 7.2
+        - 7.1
+  nodes:
+    analysis:
+      project_setup:
+        override: true
+      tests:
+        override:
+          - php-scrutinizer-run --enable-security-analysis
+  tests:
+    stop_on_failure: true
+checks:
+  php:
+    code_rating: true
+    duplication: true
+coding_style:
+  php:
+    spaces:
+      around_operators:
+        concatenation: true
+      other:
+        after_type_cast: false
+filter:
+  paths:
+    - src/
+  excluded_paths:
+    - tests/
+    - examples/
+    - docs/

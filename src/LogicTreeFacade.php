@@ -109,7 +109,10 @@ class LogicTreeFacade
      * @return \LogicTree\Node\NodeInterface
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function convertFormat(string $format, $node): NodeInterface
+    public function convertFormat(
+        /** @scrutinizer ignore-unused */ string $format,
+        /** @scrutinizer ignore-unused */ $node
+    ): NodeInterface
     {
         //todo implement method.
         throw new \LogicException('Not implemented yet!');

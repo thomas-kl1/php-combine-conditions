@@ -48,6 +48,7 @@ class DataSource
      */
     public function setData(iterable $data): DataSource
     {
+        $this->data = [];
         foreach ($data as $key => $value) {
             $this->setValue($key, $value);
         }
@@ -62,7 +63,9 @@ class DataSource
      */
     public function addData(iterable $data): DataSource
     {
-        $this->data = array_merge($this->getData(), $data);
+        foreach ($data as $key => $value) {
+            $this->setValue($key, $value);
+        }
         return $this;
     }
 

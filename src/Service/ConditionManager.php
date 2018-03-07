@@ -39,17 +39,17 @@ class ConditionManager
     /**
      * Execute the logic tree structure conditions
      *
+     * ToDo: /!\ Unknown Nodes are not processed yet and are ignored. Default result is 'true'. /!\
+     *
      * @param \LogicTree\Node\NodeInterface $node
      * @param \LogicTree\DataSource $dataSource
      * @return bool
      */
     public function execute(NodeInterface $node, DataSource $dataSource): bool
     {
-        $result = null;
+        $result = true;
 
-        if (!($node instanceof NodeInterface)) {
-            throw new \LogicException(get_class($node) . ' must implement ' . NodeInterface::class . '.');
-        } elseif ($node instanceof CombineInterface) {
+        if ($node instanceof CombineInterface) {
             $result = $this->executeCombine($node, $dataSource);
         } elseif ($node instanceof ConditionInterface) {
             $result = $this->executeCondition($node, $dataSource->getValue($node->getValueIdentifier()));
