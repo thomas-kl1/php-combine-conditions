@@ -88,6 +88,6 @@ class ConditionManager
     {
         $operator = $this->operatorPool->getOperator(OperatorPool::TYPE_COMPARATOR, $condition->getOperator());
 
-        return $operator->execute($condition->getValueCompare(), $value);
+        return $operator->execute($value, $condition->getValueCompare());
     }
 }

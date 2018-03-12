@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2018 Thomas Klein, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+-->
+<phpunit bootstrap="vendor/autoload.php" colors="true" backupGlobals="false" backupStaticAttributes="false" syntaxCheck="false">
+    <testsuites>
+        <testsuite name="Test Suite for \LogicTree\Node">
+            <directory suffix="Test.php">tests</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
+</phpunit>

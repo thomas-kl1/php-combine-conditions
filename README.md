@@ -210,8 +210,6 @@ Implement the following comparator operators:
       - array("seq" => $stringValue)
       - array("sneq" => $stringValue)
 
-fix `if ($condition === $this) {` to apply the whole nodes, check that an instance is not already set.
-
 ToString methods, in order to render the combine conditions in full text / different formats.  
 Have to: AdapterPool (toFormat) - ConverterPool (getSymbol, getExpression, getFullExpression).  
 Possibility to add custom type node and process them in the services.  

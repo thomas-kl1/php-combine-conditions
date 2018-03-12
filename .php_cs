@@ -1,10 +1,7 @@
 <?php
 /**
  * Copyright © 2018 Thomas Klein, All rights reserved.
- */
-/**
- * Pre-commit hook installation:
- * vendor/bin/static-review.php hook:install dev/tools/Magento/Tools/StaticReview/pre-commit .git/hooks/pre-commit
+ * See LICENSE bundled with this library for license details.
  */
 $finder = PhpCsFixer\Finder::create()
     ->in('src')
