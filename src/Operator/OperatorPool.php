@@ -132,17 +132,10 @@ final class OperatorPool
      */
     private function retrieveDefaultOperators(): array
     {
-        $operators = [];
-
-        foreach ($this->defaultOperators as $type => $typeOperators) {
-            foreach ($typeOperators as $operatorCode => $operator) {
-                if (!isset($operators[$type])) {
-                    $operators[$type] = [];
-                }
-                $operators[$type][$operatorCode] = new $operator();
-            }
-        }
-
-        return $operators;
+        return array_map(function ($operators) {
+            return array_map(function ($operator) {
+                return new $operator();
+            }, $operators);
+        }, $this->defaultOperators);
     }
 }
