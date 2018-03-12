@@ -22,7 +22,7 @@ interface NodeInterface
      * Set the operator
      *
      * @param string $operator
-     * @return \LogicTree\Node\ConditionInterface
+     * @return \LogicTree\Node\NodeInterface
      */
     public function setOperator(string $operator);
 
