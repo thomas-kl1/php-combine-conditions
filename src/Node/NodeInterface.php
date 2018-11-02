@@ -24,7 +24,7 @@ interface NodeInterface
      * @param string $operator
      * @return \LogicTree\Node\NodeInterface
      */
-    public function setOperator(string $operator);
+    public function setOperator(string $operator);//: NodeInterface;
 
     /**
      * Retrieve the parent combine
@@ -37,9 +37,9 @@ interface NodeInterface
      * Set the parent combine
      *
      * @param \LogicTree\Node\CombineInterface|null $condition
-     * @return mixed
+     * @return \LogicTree\Node\NodeInterface
      */
-    public function setParent(?CombineInterface $condition);
+    public function setParent(?CombineInterface $condition);//: NodeInterface;
 
     /**
      * Check if it has an existing parent

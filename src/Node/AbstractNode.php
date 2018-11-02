@@ -13,7 +13,7 @@ namespace LogicTree\Node;
 abstract class AbstractNode implements NodeInterface
 {
     /**
-     * @var \LogicTree\Node\CombineInterface
+     * @var null|\LogicTree\Node\CombineInterface
      */
     private $parent;
 
@@ -31,6 +31,7 @@ abstract class AbstractNode implements NodeInterface
     public function setParent(?CombineInterface $combine): NodeInterface
     {
         $this->parent = $combine;
+
         return $this;
     }
 
@@ -39,6 +40,6 @@ abstract class AbstractNode implements NodeInterface
      */
     public function hasParent(): bool
     {
-        return ($this->parent !== null);
+        return $this->parent !== null;
     }
 }

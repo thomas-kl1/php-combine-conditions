@@ -7,15 +7,13 @@ declare(strict_types=1);
 
 namespace LogicTree\Operator\Comparator;
 
-use LogicTree\Operator\OperatorInterface;
-
 /**
  * Class GtOperator
  *
  * The GREATER THAN:
  * The output is "true" if $expr1 is strictly greater than $expr2.
  */
-final class GtOperator extends AbstractCompareTwo implements OperatorInterface
+final class GtOperator extends AbstractCompareTwo
 {
     public const CODE = 'gt';
 
@@ -24,6 +22,6 @@ final class GtOperator extends AbstractCompareTwo implements OperatorInterface
      */
     public function executeComparison($expr1, $expr2): bool
     {
-        return ($expr1 > $expr2);
+        return $expr1 > $expr2;
     }
 }

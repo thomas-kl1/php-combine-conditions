@@ -12,7 +12,8 @@ script:
 #  - vendor/bin/phpcpd src/
   - vendor/bin/phpcs --standard=PSR1,PSR2 -v src/
   - vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
-#  - vendor/bin/pdepend src/
+  - vendor/bin/phpstan analyse -l 7 src/
   - vendor/bin/phpunit --configuration .phpunit.xml
+  - vendor/bin/pdepend --summary-xml=/tmp/summary.xml --jdepend-chart=/tmp/jdepend.svg --overview-pyramid=/tmp/pyramid.svg src/
 notifications:
   email: false

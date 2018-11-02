@@ -49,9 +49,11 @@ class DataSource
     public function setData(iterable $data): DataSource
     {
         $this->data = [];
+
         foreach ($data as $key => $value) {
             $this->setValue($key, $value);
         }
+
         return $this;
     }
 
@@ -66,6 +68,7 @@ class DataSource
         foreach ($data as $key => $value) {
             $this->setValue($key, $value);
         }
+
         return $this;
     }
 
@@ -80,6 +83,7 @@ class DataSource
         foreach ($keys as $key) {
             $this->unsetValue($key);
         }
+
         return $this;
     }
 
@@ -104,6 +108,7 @@ class DataSource
     public function setValue(string $key, $value): DataSource
     {
         $this->data[$key] = $value;
+
         return $this;
     }
 
@@ -116,6 +121,7 @@ class DataSource
     public function unsetValue(string $key): DataSource
     {
         unset($this->data[$key]);
+
         return $this;
     }
 }

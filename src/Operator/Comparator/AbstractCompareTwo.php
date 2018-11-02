@@ -19,9 +19,9 @@ abstract class AbstractCompareTwo implements OperatorInterface
      */
     public function execute(...$expressions): bool
     {
-        $count = count($expressions);
+        $count = \count($expressions);
 
-        if ($count != 2) {
+        if ($count !== 2) {
             throw new \InvalidArgumentException('2 expressions expected, ' . $count . ' given.');
         }
 

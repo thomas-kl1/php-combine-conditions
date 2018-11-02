@@ -7,15 +7,13 @@ declare(strict_types=1);
 
 namespace LogicTree\Operator\Comparator;
 
-use LogicTree\Operator\OperatorInterface;
-
 /**
  * Class EqOperator
  *
  * The EQUAL:
  * The output is "true" if $expr1 is equal to $expr2 after type juggling.
  */
-final class EqOperator extends AbstractCompareTwo implements OperatorInterface
+final class EqOperator extends AbstractCompareTwo
 {
     public const CODE = 'eq';
 
@@ -24,6 +22,6 @@ final class EqOperator extends AbstractCompareTwo implements OperatorInterface
      */
     public function executeComparison($expr1, $expr2): bool
     {
-        return ($expr1 == $expr2);
+        return $expr1 == $expr2;
     }
 }

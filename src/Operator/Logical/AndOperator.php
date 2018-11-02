@@ -24,11 +24,11 @@ final class AndOperator implements OperatorInterface
      */
     public function execute(...$expressions): bool
     {
-        $count = count($expressions);
+        $count = \count($expressions);
         $result = $expressions[0];
 
         for ($i = 1; $result && $i < $count; $i++) {
-            $result = ($result && $expressions[$i]);
+            $result = $result && $expressions[$i];
         }
 
         return $result;

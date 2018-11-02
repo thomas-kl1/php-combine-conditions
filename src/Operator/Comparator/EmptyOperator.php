@@ -7,15 +7,13 @@ declare(strict_types=1);
 
 namespace LogicTree\Operator\Comparator;
 
-use LogicTree\Operator\OperatorInterface;
-
 /**
  * Class EmptyOperator
  *
  * The EMPTY:
  * The output is "true" if $expression is empty
  */
-final class EmptyOperator extends AbstractCompareOne implements OperatorInterface
+final class EmptyOperator extends AbstractCompareOne
 {
     public const CODE = 'empty';
 

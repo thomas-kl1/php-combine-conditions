@@ -64,9 +64,11 @@ final class Combine extends AbstractNode implements CombineInterface
     public function setChildren(array $children): CombineInterface
     {
         $this->nodes = [];
+
         foreach ($children as $child) {
             $this->addChild($child);
         }
+
         return $this;
     }
 
@@ -78,8 +80,10 @@ final class Combine extends AbstractNode implements CombineInterface
         if ($condition === $this) {
             throw new \LogicException('Child node cannot be the current instance of itself.');
         }
+
         $condition->setParent($this);
         $this->nodes[] = $condition;
+
         return $this;
     }
 
@@ -88,7 +92,7 @@ final class Combine extends AbstractNode implements CombineInterface
      */
     public function getCount(): int
     {
-        return count($this->getChildren());
+        return \count($this->getChildren());
     }
 
     /**
@@ -96,7 +100,7 @@ final class Combine extends AbstractNode implements CombineInterface
      */
     public function hasChildren(): bool
     {
-        return ($this->getCount() > 0);
+        return $this->getCount() > 0;
     }
 
     /**
@@ -113,6 +117,7 @@ final class Combine extends AbstractNode implements CombineInterface
     public function setIsInvert(bool $isInvert): CombineInterface
     {
         $this->isInvert = $isInvert;
+
         return $this;
     }
 
@@ -130,6 +135,7 @@ final class Combine extends AbstractNode implements CombineInterface
     public function setOperator(string $operator): CombineInterface
     {
         $this->operator = $operator;
+
         return $this;
     }
 }

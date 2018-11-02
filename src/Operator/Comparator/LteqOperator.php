@@ -7,15 +7,13 @@ declare(strict_types=1);
 
 namespace LogicTree\Operator\Comparator;
 
-use LogicTree\Operator\OperatorInterface;
-
 /**
  * Class LteqOperator
  *
  * The LESS THAN EQUAL:
  * The output is "true" if $expr1 is less than or equal to $expr2.
  */
-final class LteqOperator extends AbstractCompareTwo implements OperatorInterface
+final class LteqOperator extends AbstractCompareTwo
 {
     public const CODE = 'lteq';
 
@@ -24,6 +22,6 @@ final class LteqOperator extends AbstractCompareTwo implements OperatorInterface
      */
     public function executeComparison($expr1, $expr2): bool
     {
-        return ($expr1 <= $expr2);
+        return $expr1 <= $expr2;
     }
 }

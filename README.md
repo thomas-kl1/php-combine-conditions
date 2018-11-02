@@ -215,6 +215,9 @@ Have to: AdapterPool (toFormat) - ConverterPool (getSymbol, getExpression, getFu
 Possibility to add custom type node and process them in the services.  
 Study Namespace and Lib Name: [trends](https://trends.google.fr/trends/explore?q=filter%20criteria,group%20conditions,complex%20conditions)
 
+Todo Builders (setter... getter... then reset)  
+-> possibility of immutable implementation (do not break it!)
+
 Add tests and examples: from scratch, with and without new operators, and execution (with expected results).   
 
 ## Authors

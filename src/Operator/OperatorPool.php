@@ -39,7 +39,7 @@ final class OperatorPool
      *
      * @var array
      */
-    private $defaultOperators = [
+    private const DEFAULT_OPERATORS = [
         OperatorPool::TYPE_COMPARATOR => [
             EmptyOperator::CODE => EmptyOperator::class,
             EqOperator::CODE => EqOperator::class,
@@ -66,7 +66,7 @@ final class OperatorPool
     /**
      * Operators list
      *
-     * @var \LogicTree\Operator\OperatorInterface[]
+     * @var array[\LogicTree\Operator\OperatorInterface[]]
      */
     private $operators = [];
 
@@ -77,10 +77,10 @@ final class OperatorPool
      */
     public function __construct(array $operators = [])
     {
-        $typeOperators = array_replace_recursive($this->retrieveDefaultOperators(), $operators);
+        $typeOperators = \array_replace_recursive($this->retrieveDefaultOperators(), $operators);
 
-        foreach ($typeOperators as $type => $operators) {
-            foreach ($operators as $operatorCode => $operator) {
+        foreach ($typeOperators as $type => $operatorList) {
+            foreach ($operatorList as $operatorCode => $operator) {
                 $this->addOperator($type, $operatorCode, $operator);
             }
         }
@@ -95,9 +95,9 @@ final class OperatorPool
      */
     public function getOperator(string $type, string $operatorCode): OperatorInterface
     {
-        if (!isset($this->operators[$type], $this->operators[$type][$operatorCode])) {
+        if (!isset($this->operators[$type][$operatorCode])) {
             throw new \LogicException(
-                sprintf('No registered operator for the type "%s" and code "%s".', $type, $operatorCode)
+                \sprintf('No registered operator for the type "%s" and code "%s".', $type, $operatorCode)
             );
         }
 
@@ -114,7 +114,7 @@ final class OperatorPool
      */
     public function addOperator(string $type, string $operatorCode, OperatorInterface $operator): OperatorPool
     {
-        if (!isset($this->operators[$type], $this->operators[$type][$operatorCode])) {
+        if (!isset($this->operators[$type][$operatorCode])) {
             if (!isset($this->operators[$type])) {
                 $this->operators[$type] = [];
             }
@@ -132,10 +132,10 @@ final class OperatorPool
      */
     private function retrieveDefaultOperators(): array
     {
-        return array_map(function ($operators) {
-            return array_map(function ($operator) {
+        return \array_map(function ($operators) {
+            return \array_map(function ($operator) {
                 return new $operator();
             }, $operators);
-        }, $this->defaultOperators);
+        }, self::DEFAULT_OPERATORS);
     }
 }

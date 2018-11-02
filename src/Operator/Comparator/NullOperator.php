@@ -7,15 +7,13 @@ declare(strict_types=1);
 
 namespace LogicTree\Operator\Comparator;
 
-use LogicTree\Operator\OperatorInterface;
-
 /**
  * Class NullOperator
  *
  * The NULL:
  * The output is "true" if $expression is null
  */
-final class NullOperator extends AbstractCompareOne implements OperatorInterface
+final class NullOperator extends AbstractCompareOne
 {
     public const CODE = 'null';
 
@@ -24,6 +22,6 @@ final class NullOperator extends AbstractCompareOne implements OperatorInterface
      */
     public function executeComparison($expression): bool
     {
-        return ($expression === null);
+        return $expression === null;
     }
 }

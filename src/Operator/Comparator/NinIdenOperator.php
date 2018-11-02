@@ -7,15 +7,13 @@ declare(strict_types=1);
 
 namespace LogicTree\Operator\Comparator;
 
-use LogicTree\Operator\OperatorInterface;
-
 /**
  * Class NinIdenOperator
  *
  * The NIN IDENTICAL:
  * The output is "true" if $expr1 is not in list $expr2, and they are of the same type.
  */
-final class NinIdenOperator extends AbstractCompareTwo implements OperatorInterface
+final class NinIdenOperator extends AbstractCompareTwo
 {
     public const CODE = 'iniden';
 
@@ -24,6 +22,6 @@ final class NinIdenOperator extends AbstractCompareTwo implements OperatorInterf
      */
     public function executeComparison($expr1, $expr2): bool
     {
-        return !in_array($expr1, $expr2, true);
+        return !\in_array($expr1, $expr2, true);
     }
 }

@@ -7,15 +7,13 @@ declare(strict_types=1);
 
 namespace LogicTree\Operator\Comparator;
 
-use LogicTree\Operator\OperatorInterface;
-
 /**
  * Class NidenOperator
  *
  * The NOT IDENTICAL:
  * The output is "true" if $expr1 is not equal to $expr2, or they are not of the same type.
  */
-final class NidenOperator extends AbstractCompareTwo implements OperatorInterface
+final class NidenOperator extends AbstractCompareTwo
 {
     public const CODE = 'niden';
 
@@ -24,6 +22,6 @@ final class NidenOperator extends AbstractCompareTwo implements OperatorInterfac
      */
     public function executeComparison($expr1, $expr2): bool
     {
-        return ($expr1 !== $expr2);
+        return $expr1 !== $expr2;
     }
 }

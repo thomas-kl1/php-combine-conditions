@@ -7,15 +7,13 @@ declare(strict_types=1);
 
 namespace LogicTree\Operator\Comparator;
 
-use LogicTree\Operator\OperatorInterface;
-
 /**
  * Class NeqOperator
  *
  * The NOT EQUAL:
  * The output is "true" if $expr1 is not equal to $expr2 after type juggling.
  */
-final class NeqOperator extends AbstractCompareTwo implements OperatorInterface
+final class NeqOperator extends AbstractCompareTwo
 {
     public const CODE = 'neq';
 
@@ -24,6 +22,6 @@ final class NeqOperator extends AbstractCompareTwo implements OperatorInterface
      */
     public function executeComparison($expr1, $expr2): bool
     {
-        return ($expr1 != $expr2);
+        return $expr1 != $expr2;
     }
 }

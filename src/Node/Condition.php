@@ -64,6 +64,7 @@ final class Condition extends AbstractNode implements ConditionInterface
     public function setOperator(string $operator): ConditionInterface
     {
         $this->operator = $operator;
+
         return $this;
     }
 
@@ -81,6 +82,7 @@ final class Condition extends AbstractNode implements ConditionInterface
     public function setValueIdentifier(string $identifier): ConditionInterface
     {
         $this->valueIdentifier = $identifier;
+
         return $this;
     }
 
@@ -98,6 +100,7 @@ final class Condition extends AbstractNode implements ConditionInterface
     public function setValueCompare($value): ConditionInterface
     {
         $this->valueCompare = $value;
+
         return $this;
     }
 }

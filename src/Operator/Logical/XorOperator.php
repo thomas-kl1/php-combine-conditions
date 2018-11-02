@@ -24,7 +24,7 @@ final class XorOperator implements OperatorInterface
      */
     public function execute(...$expressions): bool
     {
-        $count = count($expressions);
+        $count = \count($expressions);
         $result = $expressions[0];
 
         for ($i = 1; $i < $count; $i++) {

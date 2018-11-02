@@ -19,9 +19,9 @@ abstract class AbstractCompareOne implements OperatorInterface
      */
     public function execute(...$expressions): bool
     {
-        $count = count($expressions);
+        $count = \count($expressions);
 
-        if ($count != 1) {
+        if ($count !== 1) {
             throw new \InvalidArgumentException('1 expression expected, ' . $count . ' given.');
         }
 

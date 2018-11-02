@@ -33,13 +33,11 @@ class ConditionManager
      */
     public function __construct(?OperatorPool $operatorPool = null)
     {
-        $this->operatorPool = ($operatorPool === null) ? new OperatorPool() : $operatorPool;
+        $this->operatorPool = $operatorPool ?? new OperatorPool();
     }
 
     /**
      * Execute the logic tree structure conditions
-     *
-     * ToDo: /!\ Unknown Nodes are not processed yet and are ignored. Default result is 'true'. /!\
      *
      * @param \LogicTree\Node\NodeInterface $node
      * @param \LogicTree\DataSource $dataSource
