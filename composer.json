@@ -9,19 +9,19 @@
         "operator",
         "logic"
     ],
-    "homepage": "https://github.com/thomas-blackbird/php-combine-conditions",
+    "homepage": "https://github.com/thomas-kl1/php-combine-conditions",
     "license": "MIT",
     "authors": [
         {
             "name": "Thomas Klein",
-            "email": "thomas@bird.eu",
+            "email": "thomasklein876@gmail.com",
             "homepage": "https://www.linkedin.com/in/thomas-klein/",
             "role": "lead"
         }
     ],
     "support": {
-        "source": "https://github.com/thomas-blackbird/php-combine-conditions",
-        "issues": "https://github.com/thomas-blackbird/php-combine-conditions/issues"
+        "source": "https://github.com/thomas-kl1/php-combine-conditions",
+        "issues": "https://github.com/thomas-kl1/php-combine-conditions/issues"
     },
     "prefer-stable": true,
     "require": {
