@@ -8,10 +8,9 @@ declare(strict_types=1);
 namespace LogicTree\Operator\Logical;
 
 use LogicTree\Operator\OperatorInterface;
+use function count;
 
 /**
- * Class NandOperator
- *
  * The NAND:
  * The output is "false" if both inputs are "true". Otherwise, the output is "true".
  */
@@ -19,12 +18,9 @@ final class NandOperator implements OperatorInterface
 {
     public const CODE = 'nand';
 
-    /**
-     * {@inheritdoc}
-     */
     public function execute(...$expressions): bool
     {
-        $count = \count($expressions);
+        $count = count($expressions);
         $result = $expressions[0];
 
         for ($i = 1; $i < $count; $i++) {

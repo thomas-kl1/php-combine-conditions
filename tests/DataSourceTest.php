@@ -46,8 +46,8 @@ class DataSourceTest extends TestCase
         $this->assertInstanceOf(DataSource::class, $dataSource->addData($addData));
         $this->assertSame($mergedData, $dataSource->getData());
 
-        // Test unsetData
-        $this->assertInstanceOf(DataSource::class, $dataSource->unsetData($unsetData));
+        // Test unsetValues
+        $this->assertInstanceOf(DataSource::class, $dataSource->unsetValues($unsetData));
         $this->assertSame($finalData, $dataSource->getData());
     }
 

@@ -9,14 +9,8 @@ namespace LogicTree\Operator\Comparator;
 
 use LogicTree\Operator\OperatorInterface;
 
-/**
- * Class AbstractCompareTwo
- */
 abstract class AbstractCompareTwo implements OperatorInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function execute(...$expressions): bool
     {
         $count = \count($expressions);

@@ -8,8 +8,6 @@ declare(strict_types=1);
 namespace LogicTree\Operator\Comparator;
 
 /**
- * Class EmptyOperator
- *
  * The EMPTY:
  * The output is "true" if $expression is empty
  */
@@ -17,9 +15,6 @@ final class EmptyOperator extends AbstractCompareOne
 {
     public const CODE = 'empty';
 
-    /**
-     * {@inheritdoc}
-     */
     public function executeComparison($expression): bool
     {
         return empty($expression);

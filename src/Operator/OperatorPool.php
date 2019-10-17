@@ -7,15 +7,21 @@ declare(strict_types=1);
 
 namespace LogicTree\Operator;
 
+use LogicException;
 use LogicTree\Operator\Comparator\EmptyOperator;
 use LogicTree\Operator\Comparator\EqOperator;
 use LogicTree\Operator\Comparator\GteqOperator;
 use LogicTree\Operator\Comparator\GtOperator;
 use LogicTree\Operator\Comparator\IdenOperator;
+use LogicTree\Operator\Comparator\InIdenOperator;
+use LogicTree\Operator\Comparator\InOperator;
 use LogicTree\Operator\Comparator\LteqOperator;
 use LogicTree\Operator\Comparator\LtOperator;
 use LogicTree\Operator\Comparator\NeqOperator;
 use LogicTree\Operator\Comparator\NidenOperator;
+use LogicTree\Operator\Comparator\NinIdenOperator;
+use LogicTree\Operator\Comparator\NinOperator;
+use LogicTree\Operator\Comparator\NotNullOperator;
 use LogicTree\Operator\Comparator\NullOperator;
 use LogicTree\Operator\Comparator\RegexpOperator;
 use LogicTree\Operator\Logical\AndOperator;
@@ -24,9 +30,10 @@ use LogicTree\Operator\Logical\NorOperator;
 use LogicTree\Operator\Logical\OrOperator;
 use LogicTree\Operator\Logical\XnorOperator;
 use LogicTree\Operator\Logical\XorOperator;
+use function array_map;
+use function sprintf;
 
 /**
- * Class OperatorPool
  * @api
  */
 final class OperatorPool
@@ -46,10 +53,15 @@ final class OperatorPool
             GteqOperator::CODE => GteqOperator::class,
             GtOperator::CODE => GtOperator::class,
             IdenOperator::CODE => IdenOperator::class,
+            InIdenOperator::CODE => InIdenOperator::class,
+            InOperator::CODE => InOperator::class,
             LteqOperator::CODE => LteqOperator::class,
             LtOperator::CODE => LtOperator::class,
             NeqOperator::CODE => NeqOperator::class,
             NidenOperator::CODE => NidenOperator::class,
+            NinIdenOperator::CODE => NinIdenOperator::class,
+            NinOperator::CODE => NinOperator::class,
+            NotNullOperator::CODE => NotNullOperator::class,
             NullOperator::CODE => NullOperator::class,
             RegexpOperator::CODE => RegexpOperator::class,
         ],
@@ -64,17 +76,10 @@ final class OperatorPool
     ];
 
     /**
-     * Operators list
-     *
      * @var array[\LogicTree\Operator\OperatorInterface[]]
      */
     private $operators = [];
 
-    /**
-     * OperatorPool constructor
-     *
-     * @param array $operators Operators object listed by types
-     */
     public function __construct(array $operators = [])
     {
         $typeOperators = \array_replace_recursive($this->retrieveDefaultOperators(), $operators);
@@ -86,32 +91,17 @@ final class OperatorPool
         }
     }
 
-    /**
-     * Retrieve an operator by its type and code
-     *
-     * @param string $type
-     * @param string $operatorCode
-     * @return \LogicTree\Operator\OperatorInterface
-     */
     public function getOperator(string $type, string $operatorCode): OperatorInterface
     {
         if (!isset($this->operators[$type][$operatorCode])) {
-            throw new \LogicException(
-                \sprintf('No registered operator for the type "%s" and code "%s".', $type, $operatorCode)
+            throw new LogicException(
+                sprintf('No registered operator for the type "%s" and code "%s".', $type, $operatorCode)
             );
         }
 
         return $this->operators[$type][$operatorCode];
     }
 
-    /**
-     * Add an operator by its type and code
-     *
-     * @param string $type
-     * @param string $operatorCode
-     * @param \LogicTree\Operator\OperatorInterface $operator
-     * @return \LogicTree\Operator\OperatorPool
-     */
     public function addOperator(string $type, string $operatorCode, OperatorInterface $operator): OperatorPool
     {
         if (!isset($this->operators[$type][$operatorCode])) {
@@ -125,15 +115,10 @@ final class OperatorPool
         return $this;
     }
 
-    /**
-     * Retrieve the default instantiated operators
-     *
-     * @return array
-     */
     private function retrieveDefaultOperators(): array
     {
-        return \array_map(function ($operators) {
-            return \array_map(function ($operator) {
+        return array_map(static function ($operators) {
+            return array_map(static function ($operator) {
                 return new $operator();
             }, $operators);
         }, self::DEFAULT_OPERATORS);

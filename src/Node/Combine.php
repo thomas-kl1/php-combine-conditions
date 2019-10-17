@@ -7,38 +7,30 @@ declare(strict_types=1);
 
 namespace LogicTree\Node;
 
-/**
- * Class Combine
- */
+use LogicException;
+use function count;
+
 final class Combine extends AbstractNode implements CombineInterface
 {
     /**
-     * Operator code
-     *
      * @var string
      */
     private $operator;
 
     /**
-     * Invert final result flag
-     *
      * @var bool
      */
     private $isInvert;
 
     /**
-     * Nodes elements array
-     *
-     * @var \LogicTree\Node\NodeInterface[]
+     * @var NodeInterface[]
      */
     private $nodes;
 
     /**
-     * Combine constructor
-     *
      * @param string $operator
      * @param bool $isInvert [optional] Is false by default.
-     * @param \LogicTree\Node\NodeInterface[] $children [optional] Is empty by default.
+     * @param NodeInterface[] $children [optional] Is empty by default.
      */
     public function __construct(
         string $operator,
@@ -50,17 +42,11 @@ final class Combine extends AbstractNode implements CombineInterface
         $this->setChildren($children);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getChildren(): array
     {
         return $this->nodes;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setChildren(array $children): CombineInterface
     {
         $this->nodes = [];
@@ -72,13 +58,10 @@ final class Combine extends AbstractNode implements CombineInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addChild(NodeInterface $condition): CombineInterface
     {
         if ($condition === $this) {
-            throw new \LogicException('Child node cannot be the current instance of itself.');
+            throw new LogicException('Child node cannot be the current instance of itself.');
         }
 
         $condition->setParent($this);
@@ -87,33 +70,21 @@ final class Combine extends AbstractNode implements CombineInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getCount(): int
     {
-        return \count($this->getChildren());
+        return count($this->getChildren());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasChildren(): bool
     {
         return $this->getCount() > 0;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isInvert(): bool
     {
         return $this->isInvert;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setIsInvert(bool $isInvert): CombineInterface
     {
         $this->isInvert = $isInvert;
@@ -121,17 +92,11 @@ final class Combine extends AbstractNode implements CombineInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getOperator(): string
     {
         return $this->operator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setOperator(string $operator): CombineInterface
     {
         $this->operator = $operator;

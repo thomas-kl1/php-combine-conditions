@@ -8,8 +8,6 @@ declare(strict_types=1);
 namespace LogicTree\Operator\Comparator;
 
 /**
- * Class EqOperator
- *
  * The EQUAL:
  * The output is "true" if $expr1 is equal to $expr2 after type juggling.
  */
@@ -17,9 +15,6 @@ final class EqOperator extends AbstractCompareTwo
 {
     public const CODE = 'eq';
 
-    /**
-     * {@inheritdoc}
-     */
     public function executeComparison($expr1, $expr2): bool
     {
         return $expr1 == $expr2;

@@ -2,11 +2,11 @@
 /**
  * Copyright © 2018 Thomas Klein, All right reserved.
  */
+declare(strict_types=1);
 
 namespace LogicTree\Node;
 
 /**
- * Interface CombineInterface
  * @api
  */
 interface CombineInterface extends NodeInterface
@@ -14,23 +14,23 @@ interface CombineInterface extends NodeInterface
     /**
      * Retrieve the conditions as array of conditions or combinations
      *
-     * @return \LogicTree\Node\NodeInterface[]
+     * @return NodeInterface[]
      */
     public function getChildren(): array;
 
     /**
      * Set the logic structure as conditions or combinations
      *
-     * @param \LogicTree\Node\NodeInterface[] $children
-     * @return \LogicTree\Node\Combine
+     * @param NodeInterface[] $children
+     * @return Combine
      */
     public function setChildren(array $children): CombineInterface;
 
     /**
      * Add a logic structure as condition or combination
      *
-     * @param \LogicTree\Node\NodeInterface $node
-     * @return \LogicTree\Node\Combine
+     * @param NodeInterface $node
+     * @return Combine
      */
     public function addChild(NodeInterface $node): CombineInterface;
 
@@ -59,7 +59,7 @@ interface CombineInterface extends NodeInterface
      * Set is result of combination inverted
      *
      * @param bool $isInvert
-     * @return \LogicTree\Node\Combine
+     * @return Combine
      */
     public function setIsInvert(bool $isInvert): CombineInterface;
 }

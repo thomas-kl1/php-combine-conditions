@@ -7,39 +7,23 @@ declare(strict_types=1);
 
 namespace LogicTree\Node;
 
-/**
- * Class Condition
- */
 final class Condition extends AbstractNode implements ConditionInterface
 {
     /**
-     * Operator code
-     *
      * @var string
      */
     private $operator;
 
     /**
-     * Key value identifier in the data source
-     *
      * @var string
      */
     private $valueIdentifier;
 
     /**
-     * Value to compare to the data source value
-     *
      * @var mixed
      */
     private $valueCompare;
 
-    /**
-     * Condition constructor
-     *
-     * @param string $valueIdentifier
-     * @param string $operator
-     * @param mixed $valueCompare
-     */
     public function __construct(
         string $valueIdentifier,
         string $operator,
@@ -50,17 +34,11 @@ final class Condition extends AbstractNode implements ConditionInterface
         $this->setValueCompare($valueCompare);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getOperator(): string
     {
         return $this->operator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setOperator(string $operator): ConditionInterface
     {
         $this->operator = $operator;
@@ -68,17 +46,11 @@ final class Condition extends AbstractNode implements ConditionInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getValueIdentifier(): string
     {
         return $this->valueIdentifier;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setValueIdentifier(string $identifier): ConditionInterface
     {
         $this->valueIdentifier = $identifier;
@@ -86,17 +58,11 @@ final class Condition extends AbstractNode implements ConditionInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getValueCompare()
     {
         return $this->valueCompare;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setValueCompare($value): ConditionInterface
     {
         $this->valueCompare = $value;

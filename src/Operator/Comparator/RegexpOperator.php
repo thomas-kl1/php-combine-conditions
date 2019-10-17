@@ -7,9 +7,9 @@ declare(strict_types=1);
 
 namespace LogicTree\Operator\Comparator;
 
+use function preg_match;
+
 /**
- * Class RegexpOperator
- *
  * The REGEXP:
  * The output is "true" if $expr2 match the $expr1 regex mask.
  */
@@ -17,11 +17,8 @@ final class RegexpOperator extends AbstractCompareTwo
 {
     public const CODE = 'regexp';
 
-    /**
-     * {@inheritdoc}
-     */
     public function executeComparison($expr1, $expr2): bool
     {
-        return (bool) \preg_match($expr1, $expr2);
+        return (bool) preg_match($expr1, $expr2);
     }
 }

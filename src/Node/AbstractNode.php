@@ -7,27 +7,18 @@ declare(strict_types=1);
 
 namespace LogicTree\Node;
 
-/**
- * Class AbstractCondition
- */
 abstract class AbstractNode implements NodeInterface
 {
     /**
-     * @var null|\LogicTree\Node\CombineInterface
+     * @var null|CombineInterface
      */
     private $parent;
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent(): ?CombineInterface
     {
         return $this->parent;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setParent(?CombineInterface $combine): NodeInterface
     {
         $this->parent = $combine;
@@ -35,9 +26,6 @@ abstract class AbstractNode implements NodeInterface
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasParent(): bool
     {
         return $this->parent !== null;

@@ -2,11 +2,11 @@
 /**
  * Copyright © 2018 Thomas Klein, All right reserved.
  */
+declare(strict_types=1);
 
 namespace LogicTree\Node;
 
 /**
- * Interface NodeInterface
  * @api
  */
 interface NodeInterface
@@ -22,22 +22,22 @@ interface NodeInterface
      * Set the operator
      *
      * @param string $operator
-     * @return \LogicTree\Node\NodeInterface
+     * @return NodeInterface
      */
     public function setOperator(string $operator);//: NodeInterface;
 
     /**
      * Retrieve the parent combine
      *
-     * @return \LogicTree\Node\CombineInterface|null
+     * @return CombineInterface|null
      */
     public function getParent(): ?CombineInterface;
 
     /**
      * Set the parent combine
      *
-     * @param \LogicTree\Node\CombineInterface|null $condition
-     * @return \LogicTree\Node\NodeInterface
+     * @param CombineInterface|null $condition
+     * @return NodeInterface
      */
     public function setParent(?CombineInterface $condition);//: NodeInterface;
 

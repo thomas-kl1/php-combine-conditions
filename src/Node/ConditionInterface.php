@@ -3,11 +3,11 @@
  * Copyright © 2018 Thomas Klein, All right reserved.
  * See LICENSE bundled with this library for license details.
  */
+declare(strict_types=1);
 
 namespace LogicTree\Node;
 
 /**
- * Interface ConditionInterface
  * @api
  */
 interface ConditionInterface extends NodeInterface
@@ -23,7 +23,7 @@ interface ConditionInterface extends NodeInterface
      * Set the value key identifier to compare
      *
      * @param string $identifier
-     * @return \LogicTree\Node\ConditionInterface
+     * @return ConditionInterface
      */
     public function setValueIdentifier(string $identifier): ConditionInterface;
 
@@ -38,7 +38,7 @@ interface ConditionInterface extends NodeInterface
      * Set the value to compare
      *
      * @param mixed $value
-     * @return \LogicTree\Node\ConditionInterface
+     * @return ConditionInterface
      */
     public function setValueCompare($value): ConditionInterface;
 }

@@ -12,81 +12,40 @@ use LogicTree\Operator\OperatorInterface;
 use LogicTree\Operator\OperatorPool;
 use LogicTree\Service\ConditionManager;
 
-/**
- * Class LogicTreeFacade
- */
 class LogicTreeFacade
 {
     /**
-     * Combine Conditions Manager
-     *
-     * @var \LogicTree\Service\ConditionManager
+     * @var ConditionManager
      */
     private $conditionManager;
 
     /**
-     * Operator Pool
-     *
-     * @var \LogicTree\Operator\OperatorPool
+     * @var OperatorPool
      */
     private $operatorPool;
 
-    /**
-     * LogicTreeFacade constructor
-     *
-     * @param \LogicTree\Service\ConditionManager|null $conditionManager
-     */
     public function __construct(?ConditionManager $conditionManager = null)
     {
         $this->operatorPool = new OperatorPool();
         $this->conditionManager = $conditionManager ?? new ConditionManager($this->operatorPool);
     }
 
-    /**
-     * Add a new Operator to the interpreter
-     *
-     * @param string $type
-     * @param string $operatorCode
-     * @param \LogicTree\Operator\OperatorInterface $operator
-     * @return \LogicTree\LogicTreeFacade
-     */
     public function addOperator(string $type, string $operatorCode, OperatorInterface $operator): LogicTreeFacade
     {
         $this->operatorPool->addOperator($type, $operatorCode, $operator);
         return $this;
     }
 
-    /**
-     * Create a new data source
-     *
-     * @param iterable $data
-     * @return \LogicTree\DataSource
-     */
     public function createDataSource(iterable $data): DataSource
     {
         return new DataSource($data);
     }
 
-    /**
-     * Execute the logic tree structure conditions
-     *
-     * @param \LogicTree\Node\NodeInterface $node
-     * @param \LogicTree\DataSource $dataSource
-     * @return bool
-     */
     public function executeCombineConditions(NodeInterface $node, DataSource $dataSource): bool
     {
         return $this->conditionManager->execute($node, $dataSource);
     }
 
-    /**
-     * Execute the logic tree structure conditions
-     *
-     * @param string $format
-     * @param mixed $node
-     * @param iterable $dataSource
-     * @return bool
-     */
     public function executeCombineConditionsFormat(string $format, $node, iterable $dataSource): bool
     {
         return $this->conditionManager->execute(
@@ -95,17 +54,11 @@ class LogicTreeFacade
         );
     }
 
-    /**
-     * Transform an array conditions to a combine conditions object
-     *
-     * @param string $format
-     * @param mixed $node
-     * @return \LogicTree\Node\NodeInterface
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function convertFormat(
-        /** @scrutinizer ignore-unused */ string $format,
-        /** @scrutinizer ignore-unused */ $node
+        /** @scrutinizer ignore-unused */ 
+        string $format,
+        /** @scrutinizer ignore-unused */ 
+        $node
     ): NodeInterface {
         //todo implement method.
         throw new \LogicException('Not implemented yet!');

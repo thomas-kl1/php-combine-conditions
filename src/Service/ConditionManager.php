@@ -14,35 +14,20 @@ use LogicTree\Node\NodeInterface;
 use LogicTree\Operator\OperatorPool;
 
 /**
- * Class ConditionManager
  * @api
  */
 class ConditionManager
 {
     /**
-     * Operator Pool
-     *
-     * @var \LogicTree\Operator\OperatorPool
+     * @var OperatorPool
      */
     private $operatorPool;
 
-    /**
-     * Combine Condition Manager constructor
-     *
-     * @param \LogicTree\Operator\OperatorPool|null $operatorPool
-     */
     public function __construct(?OperatorPool $operatorPool = null)
     {
         $this->operatorPool = $operatorPool ?? new OperatorPool();
     }
 
-    /**
-     * Execute the logic tree structure conditions
-     *
-     * @param \LogicTree\Node\NodeInterface $node
-     * @param \LogicTree\DataSource $dataSource
-     * @return bool
-     */
     public function execute(NodeInterface $node, DataSource $dataSource): bool
     {
         $result = true;
@@ -56,13 +41,6 @@ class ConditionManager
         return $result;
     }
 
-    /**
-     * Execute the combination of conditions expressions
-     *
-     * @param \LogicTree\Node\CombineInterface $combine
-     * @param \LogicTree\DataSource $dataSource
-     * @return bool
-     */
     private function executeCombine(CombineInterface $combine, DataSource $dataSource): bool
     {
         $operator = $this->operatorPool->getOperator(OperatorPool::TYPE_LOGICAL, $combine->getOperator());
@@ -75,13 +53,6 @@ class ConditionManager
         return ($combine->isInvert() xor $operator->execute(...$expressions));
     }
 
-    /**
-     * Execute the condition expression
-     *
-     * @param \LogicTree\Node\ConditionInterface $condition
-     * @param mixed $value
-     * @return bool
-     */
     private function executeCondition(ConditionInterface $condition, $value): bool
     {
         $operator = $this->operatorPool->getOperator(OperatorPool::TYPE_COMPARATOR, $condition->getOperator());

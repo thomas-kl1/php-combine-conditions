@@ -8,8 +8,6 @@ declare(strict_types=1);
 namespace LogicTree\Operator\Comparator;
 
 /**
- * Class NotNullOperator
- *
  * The NULL:
  * The output is "true" if $expression is not null
  */
@@ -17,9 +15,6 @@ final class NotNullOperator extends AbstractCompareOne
 {
     public const CODE = 'notnull';
 
-    /**
-     * {@inheritdoc}
-     */
     public function executeComparison($expression): bool
     {
         return $expression !== null;
