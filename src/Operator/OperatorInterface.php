@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2018 Thomas Klein, All right reserved.
+ * Copyright © Thomas Klein, All right reserved.
  * See LICENSE bundled with this library for license details.
  */
 declare(strict_types=1);
