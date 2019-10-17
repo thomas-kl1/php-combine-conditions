@@ -26,7 +26,7 @@ class DataSourceTest extends TestCase
         $data = ['key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3'];
         $addData = ['key2' => 'newValue2', 'key4' => 'value4'];
         $mergedData = array_merge($data, $addData);
-        $unsetData = ['key1', 'key4'];
+        $unsetValues = ['key1', 'key4'];
         $finalData = ['key2' => 'newValue2', 'key3' => 'value3'];
         $dataSourceMirror = new DataSource($data);
 
@@ -47,7 +47,7 @@ class DataSourceTest extends TestCase
         $this->assertSame($mergedData, $dataSource->getData());
 
         // Test unsetValues
-        $this->assertInstanceOf(DataSource::class, $dataSource->unsetValues($unsetData));
+        $this->assertInstanceOf(DataSource::class, $dataSource->unsetValues($unsetValues));
         $this->assertSame($finalData, $dataSource->getData());
     }
 
@@ -87,7 +87,7 @@ class DataSourceTest extends TestCase
         $data = ['key1' => 'value1', 'key2' => 'value2', 'key3' => 'value3'];
         $addData = ['key2' => 'newValue2', 'key4' => 'value4'];
         $mergedData = array_merge($data, $addData);
-        $unsetData = ['key1', 'key4'];
+        $unsetValues = ['key1', 'key4'];
         $finalData = ['key2' => 'newValue2', 'key3' => 'value3'];
         $key = 'key1';
         $value = 'value1';
@@ -107,11 +107,6 @@ class DataSourceTest extends TestCase
         $this->assertSame($mergedData, $dataSource->getData());
         $this->assertSame($value, $dataSource->getValue($key));
 
-        // Test unsetData
-        $this->assertInstanceOf(DataSource::class, $dataSource->unsetData($unsetData));
-        $this->assertSame($finalData, $dataSource->getData());
-        $this->assertNull($dataSource->getValue($key));
-
         // Test setValue
         $this->assertInstanceOf(DataSource::class, $dataSource->setValue($key, $value));
         $this->assertSame($value, $dataSource->getValue($key));
@@ -121,5 +116,10 @@ class DataSourceTest extends TestCase
         $this->assertInstanceOf(DataSource::class, $dataSource->unsetValue($key));
         $this->assertNull($dataSource->getValue($key));
         $this->assertFalse(in_array($value, $dataSource->getData()));
+
+        // Test unsetValues
+        $this->assertInstanceOf(DataSource::class, $dataSource->unsetValues($unsetValues));
+        $this->assertSame($finalData, $dataSource->getData());
+        $this->assertNull($dataSource->getValue($key));
     }
 }

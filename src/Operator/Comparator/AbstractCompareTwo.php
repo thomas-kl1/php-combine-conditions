@@ -7,16 +7,18 @@ declare(strict_types=1);
 
 namespace LogicTree\Operator\Comparator;
 
+use InvalidArgumentException;
 use LogicTree\Operator\OperatorInterface;
+use function count;
 
 abstract class AbstractCompareTwo implements OperatorInterface
 {
     public function execute(...$expressions): bool
     {
-        $count = \count($expressions);
+        $count = count($expressions);
 
         if ($count !== 2) {
-            throw new \InvalidArgumentException('2 expressions expected, ' . $count . ' given.');
+            throw new InvalidArgumentException('2 expressions expected, ' . $count . ' given.');
         }
 
         return $this->executeComparison($expressions[0], $expressions[1]);

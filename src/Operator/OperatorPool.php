@@ -31,6 +31,7 @@ use LogicTree\Operator\Logical\OrOperator;
 use LogicTree\Operator\Logical\XnorOperator;
 use LogicTree\Operator\Logical\XorOperator;
 use function array_map;
+use function array_merge_recursive;
 use function sprintf;
 
 /**
@@ -82,7 +83,7 @@ final class OperatorPool
 
     public function __construct(array $operators = [])
     {
-        $typeOperators = \array_replace_recursive($this->retrieveDefaultOperators(), $operators);
+        $typeOperators = array_merge_recursive($this->retrieveDefaultOperators(), $operators);
 
         foreach ($typeOperators as $type => $operatorList) {
             foreach ($operatorList as $operatorCode => $operator) {

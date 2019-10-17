@@ -45,22 +45,4 @@ class LogicTreeFacade
     {
         return $this->conditionManager->execute($node, $dataSource);
     }
-
-    public function executeCombineConditionsFormat(string $format, $node, iterable $dataSource): bool
-    {
-        return $this->conditionManager->execute(
-            $this->convertFormat($format, $node),
-            $this->createDataSource($dataSource)
-        );
-    }
-
-    public function convertFormat(
-        /** @scrutinizer ignore-unused */ 
-        string $format,
-        /** @scrutinizer ignore-unused */ 
-        $node
-    ): NodeInterface {
-        //todo implement method.
-        throw new \LogicException('Not implemented yet!');
-    }
 }
