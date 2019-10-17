@@ -1,7 +1,7 @@
 # PHP Combine Conditions
 
 [![Travis branch](https://img.shields.io/travis/thomas-kl1/php-combine-conditions/master.svg?style=flat-square)](https://travis-ci.org/thomas-kl1/php-combine-conditions?branch=master)
-[![Codacy Badge](https://img.shields.io/codacy/grade/92a56a8e4a0d4e4b8681bbe439cf73ac/master.svg?style=flat-square)](https://app.codacy.com/app/thomas-kl1/php-combine-conditions)
+[![Codacy Badge](https://img.shields.io/codacy/grade/47d3b2e42bdb41f0a1b713a313dea870/master.svg?style=flat-square)](https://app.codacy.com/app/thomas-klein/php-combine-conditions)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/thomas-kl1/php-combine-conditions/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/thomas-kl1/php-combine-conditions/?branch=master)
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/thomas-kl1/php-combine-conditions.svg?style=flat-square)](https://codeclimate.com/github/thomas-kl1/php-combine-conditions/maintainability)
 [![Coveralls github branch](https://img.shields.io/coveralls/github/thomas-kl1/php-combine-conditions/master.svg?style=flat-square)](https://coveralls.io/github/thomas-kl1/php-combine-conditions?branch=master)
