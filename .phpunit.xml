@@ -5,7 +5,7 @@
  * See LICENSE bundled with this library for license details.
  */
 -->
-<phpunit bootstrap="vendor/autoload.php" colors="true" backupGlobals="false" backupStaticAttributes="false" syntaxCheck="false">
+<phpunit bootstrap="vendor/autoload.php" colors="true" backupGlobals="false" backupStaticAttributes="false">
     <testsuites>
         <testsuite name="Test Suite for \LogicTree\Node">
             <directory suffix="Test.php">tests</directory>

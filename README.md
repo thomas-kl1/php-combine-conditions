@@ -1,13 +1,13 @@
 # PHP Combine Conditions
 
-[![Travis branch](https://img.shields.io/travis/thomas-blackbird/php-combine-conditions/master.svg?style=flat-square)](https://travis-ci.org/thomas-blackbird/php-combine-conditions?branch=master)
-[![Codacy Badge](https://img.shields.io/codacy/grade/92a56a8e4a0d4e4b8681bbe439cf73ac/master.svg?style=flat-square)](https://app.codacy.com/app/thomas-blackbird/php-combine-conditions)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/thomas-blackbird/php-combine-conditions/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/thomas-blackbird/php-combine-conditions/?branch=master)
-[![Code Climate](https://img.shields.io/codeclimate/maintainability/thomas-blackbird/php-combine-conditions.svg?style=flat-square)](https://codeclimate.com/github/thomas-blackbird/php-combine-conditions/maintainability)
-[![Coveralls github branch](https://img.shields.io/coveralls/github/thomas-blackbird/php-combine-conditions/master.svg?style=flat-square)](https://coveralls.io/github/thomas-blackbird/php-combine-conditions?branch=master)
+[![Travis branch](https://img.shields.io/travis/thomas-kl1/php-combine-conditions/master.svg?style=flat-square)](https://travis-ci.org/thomas-kl1/php-combine-conditions?branch=master)
+[![Codacy Badge](https://img.shields.io/codacy/grade/92a56a8e4a0d4e4b8681bbe439cf73ac/master.svg?style=flat-square)](https://app.codacy.com/app/thomas-kl1/php-combine-conditions)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/thomas-kl1/php-combine-conditions/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/thomas-kl1/php-combine-conditions/?branch=master)
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/thomas-kl1/php-combine-conditions.svg?style=flat-square)](https://codeclimate.com/github/thomas-kl1/php-combine-conditions/maintainability)
+[![Coveralls github branch](https://img.shields.io/coveralls/github/thomas-kl1/php-combine-conditions/master.svg?style=flat-square)](https://coveralls.io/github/thomas-kl1/php-combine-conditions?branch=master)
 [![Latest Stable Version](https://img.shields.io/packagist/v/tklein/php-combine-conditions.svg?style=flat-square)](https://packagist.org/packages/tklein/php-combine-conditions)
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/tklein/php-combine-conditions.svg?style=flat-square)](https://packagist.org/packages/tklein/php-combine-conditions)
-[![License: MIT](https://img.shields.io/github/license/thomas-blackbird/php-combine-conditions.svg?style=flat-square)](./LICENSE)
+[![License: MIT](https://img.shields.io/github/license/thomas-kl1/php-combine-conditions.svg?style=flat-square)](./LICENSE)
 
 Generic representation of conditional structure/tree library for PHP.
 
@@ -41,8 +41,8 @@ composer require tklein/php-combine-conditions
 
 ### Manual
 
-[Download](https://github.com/thomas-blackbird/php-combine-conditions/zipball/master) this repo,
-or the [latest release](https://github.com/thomas-blackbird/php-combine-conditions/releases),
+[Download](https://github.com/thomas-kl1/php-combine-conditions/zipball/master) this repo,
+or the [latest release](https://github.com/thomas-kl1/php-combine-conditions/releases),
 and put it somewhere in your project. Then do the following where you want to use the library:
 
 ```php
@@ -222,9 +222,9 @@ Add tests and examples: from scratch, with and without new operators, and execut
 
 ## Authors
 
-* **Thomas Klein** - *Initial work* - [It's me!](https://github.com/thomas-blackbird)
+* **Thomas Klein** - *Initial work* - [It's me!](https://github.com/thomas-kl1)
 
-See also the list of [contributors](https://github.com/thomas-blackbird/php-combine-conditions/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/thomas-kl1/php-combine-conditions/contributors) who participated in this project.
 
 ## License
 
