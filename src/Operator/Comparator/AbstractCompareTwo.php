@@ -1,9 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Copyright © Thomas Klein, All rights reserved.
  * See LICENSE bundled with this library for license details.
  */
-declare(strict_types=1);
 
 namespace LogicTree\Operator\Comparator;
 
@@ -13,7 +12,7 @@ use function count;
 
 abstract class AbstractCompareTwo implements OperatorInterface
 {
-    public function execute(...$expressions): bool
+    public function execute(mixed ...$expressions): bool
     {
         $count = count($expressions);
 
@@ -31,5 +30,5 @@ abstract class AbstractCompareTwo implements OperatorInterface
      * @param mixed $expr2
      * @return bool
      */
-    abstract public function executeComparison($expr1, $expr2): bool;
+    abstract public function executeComparison(mixed $expr1, mixed $expr2): bool;
 }

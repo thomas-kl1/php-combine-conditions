@@ -1,9 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Copyright © Thomas Klein, All rights reserved.
  * See LICENSE bundled with this library for license details.
  */
-declare(strict_types=1);
 
 namespace LogicTree\Node;
 
@@ -13,19 +12,9 @@ use function count;
 final class Combine extends AbstractNode implements CombineInterface
 {
     /**
-     * @var string
-     */
-    private $operator;
-
-    /**
-     * @var bool
-     */
-    private $isInvert;
-
-    /**
      * @var NodeInterface[]
      */
-    private $nodes;
+    private array $nodes;
 
     /**
      * @param string $operator
@@ -33,12 +22,12 @@ final class Combine extends AbstractNode implements CombineInterface
      * @param NodeInterface[] $children [optional] Is empty by default.
      */
     public function __construct(
-        string $operator,
-        bool $isInvert = null,
-        array $children = []
+        private string $operator,
+        private bool $isInvert = false,
+        private array $children = []
     ) {
         $this->setOperator($operator);
-        $this->setIsInvert($isInvert ?? false);
+        $this->setIsInvert($isInvert);
         $this->setChildren($children);
     }
 

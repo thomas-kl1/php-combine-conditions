@@ -1,9 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Copyright © Thomas Klein, All rights reserved.
  * See LICENSE bundled with this library for license details.
  */
-declare(strict_types=1);
 
 namespace LogicTree\Operator\Comparator;
 
@@ -17,7 +16,7 @@ final class InIdenOperator extends AbstractCompareTwo
 {
     public const CODE = 'iniden';
 
-    public function executeComparison($expr1, $expr2): bool
+    public function executeComparison(mixed $expr1, mixed $expr2): bool
     {
         return in_array($expr1, $expr2, true);
     }

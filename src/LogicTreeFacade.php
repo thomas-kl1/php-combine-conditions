@@ -14,19 +14,13 @@ use LogicTree\Service\ConditionManager;
 
 class LogicTreeFacade
 {
-    /**
-     * @var ConditionManager
-     */
-    private $conditionManager;
+    private ConditionManager $conditionManager;
 
-    /**
-     * @var OperatorPool
-     */
-    private $operatorPool;
+    private OperatorPool $operatorPool;
 
-    public function __construct(?ConditionManager $conditionManager = null)
+    public function __construct(?ConditionManager $conditionManager = null, ?OperatorPool $operatorPool = null)
     {
-        $this->operatorPool = new OperatorPool();
+        $this->operatorPool = $operatorPool ?? new OperatorPool();
         $this->conditionManager = $conditionManager ?? new ConditionManager($this->operatorPool);
     }
 

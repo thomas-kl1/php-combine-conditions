@@ -1,6 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * Copyright © 2018 Thomas Klein, All rights reserved.
+ * Copyright © Thomas Klein, All rights reserved.
  * See LICENSE bundled with this library for license details.
  */
 
@@ -19,7 +19,7 @@ class DataSourceTest extends TestCase
      *
      * @return void
      */
-    public function testData()
+    public function testData(): void
     {
         $dataSource = new DataSource();
 
@@ -31,11 +31,11 @@ class DataSourceTest extends TestCase
         $dataSourceMirror = new DataSource($data);
 
         // Test getData
-        $this->assertInternalType('array', $dataSource->getData());
+        $this->assertIsArray($dataSource->getData());
         $this->assertSame([], $dataSource->getData());
 
         // Test setData
-        $this->assertInstanceOf(DataSource::class, $dataSource->setData($data));
+        $dataSource->setData($data);
         $this->assertSame($data, $dataSource->getData());
 
         // Test Construct
@@ -43,11 +43,11 @@ class DataSourceTest extends TestCase
         $this->assertSame($dataSourceMirror->getData(), $dataSource->getData());
 
         // Test addData
-        $this->assertInstanceOf(DataSource::class, $dataSource->addData($addData));
+        $dataSource->addData($addData);
         $this->assertSame($mergedData, $dataSource->getData());
 
         // Test unsetValues
-        $this->assertInstanceOf(DataSource::class, $dataSource->unsetValues($unsetValues));
+        $dataSource->unsetValues($unsetValues);
         $this->assertSame($finalData, $dataSource->getData());
     }
 
@@ -56,7 +56,7 @@ class DataSourceTest extends TestCase
      *
      * @return void
      */
-    public function testValue()
+    public function testValue(): void
     {
         $dataSource = new DataSource();
 
@@ -67,11 +67,11 @@ class DataSourceTest extends TestCase
         $this->assertNull($dataSource->getValue($key));
 
         // Test setValue
-        $this->assertInstanceOf(DataSource::class, $dataSource->setValue($key, $value));
+        $dataSource->setValue($key, $value);
         $this->assertSame($value, $dataSource->getValue($key));
 
         // Test unsetValue
-        $this->assertInstanceOf(DataSource::class, $dataSource->unsetValue($key));
+        $dataSource->unsetValue($key);
         $this->assertNull($dataSource->getValue($key));
     }
 
@@ -80,7 +80,7 @@ class DataSourceTest extends TestCase
      *
      * @return void
      */
-    public function testDataValue()
+    public function testDataValue(): void
     {
         $dataSource = new DataSource();
 
@@ -93,32 +93,32 @@ class DataSourceTest extends TestCase
         $value = 'value1';
 
         // Test getData
-        $this->assertInternalType('array', $dataSource->getData());
+        $this->assertIsArray($dataSource->getData());
         $this->assertSame([], $dataSource->getData());
         $this->assertNull($dataSource->getValue($key));
 
         // Test setData
-        $this->assertInstanceOf(DataSource::class, $dataSource->setData($data));
+        $dataSource->setData($data);
         $this->assertSame($data, $dataSource->getData());
         $this->assertSame($value, $dataSource->getValue($key));
 
         // Test addData
-        $this->assertInstanceOf(DataSource::class, $dataSource->addData($addData));
+        $dataSource->addData($addData);
         $this->assertSame($mergedData, $dataSource->getData());
         $this->assertSame($value, $dataSource->getValue($key));
 
         // Test setValue
-        $this->assertInstanceOf(DataSource::class, $dataSource->setValue($key, $value));
+        $dataSource->setValue($key, $value);
         $this->assertSame($value, $dataSource->getValue($key));
-        $this->assertTrue(in_array($value, $dataSource->getData()));
+        $this->assertContains($value, $dataSource->getData());
 
         // Test unsetValue
-        $this->assertInstanceOf(DataSource::class, $dataSource->unsetValue($key));
+        $dataSource->unsetValue($key);
         $this->assertNull($dataSource->getValue($key));
-        $this->assertFalse(in_array($value, $dataSource->getData()));
+        $this->assertNotContains($value, $dataSource->getData());
 
         // Test unsetValues
-        $this->assertInstanceOf(DataSource::class, $dataSource->unsetValues($unsetValues));
+        $dataSource->unsetValues($unsetValues);
         $this->assertSame($finalData, $dataSource->getData());
         $this->assertNull($dataSource->getValue($key));
     }

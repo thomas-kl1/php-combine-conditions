@@ -18,12 +18,7 @@ use LogicTree\Operator\OperatorPool;
  */
 class ConditionManager
 {
-    /**
-     * @var OperatorPool
-     */
-    private $operatorPool;
-
-    public function __construct(?OperatorPool $operatorPool = null)
+    public function __construct(private ?OperatorPool $operatorPool = null)
     {
         $this->operatorPool = $operatorPool ?? new OperatorPool();
     }

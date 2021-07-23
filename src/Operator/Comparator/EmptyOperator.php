@@ -1,9 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Copyright © Thomas Klein, All rights reserved.
  * See LICENSE bundled with this library for license details.
  */
-declare(strict_types=1);
 
 namespace LogicTree\Operator\Comparator;
 
@@ -15,7 +14,7 @@ final class EmptyOperator extends AbstractCompareOne
 {
     public const CODE = 'empty';
 
-    public function executeComparison($expression): bool
+    public function executeComparison(mixed $expression): bool
     {
         return empty($expression);
     }

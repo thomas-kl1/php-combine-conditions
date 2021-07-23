@@ -1,9 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Copyright © Thomas Klein, All rights reserved.
  * See LICENSE bundled with this library for license details.
  */
-declare(strict_types=1);
 
 namespace LogicTree\Operator\Logical;
 
@@ -18,7 +17,7 @@ final class NorOperator implements OperatorInterface
 {
     public const CODE = 'nor';
 
-    public function execute(...$expressions): bool
+    public function execute(mixed ...$expressions): bool
     {
         $count = count($expressions);
         $result = $expressions[0];

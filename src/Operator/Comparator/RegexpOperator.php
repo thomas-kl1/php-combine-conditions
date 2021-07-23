@@ -1,9 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Copyright © Thomas Klein, All rights reserved.
  * See LICENSE bundled with this library for license details.
  */
-declare(strict_types=1);
 
 namespace LogicTree\Operator\Comparator;
 
@@ -17,7 +16,7 @@ final class RegexpOperator extends AbstractCompareTwo
 {
     public const CODE = 'regexp';
 
-    public function executeComparison($expr1, $expr2): bool
+    public function executeComparison(mixed $expr1, mixed $expr2): bool
     {
         return (bool) preg_match($expr1, $expr2);
     }

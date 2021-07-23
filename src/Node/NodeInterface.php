@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Copyright © Thomas Klein, All right reserved.
  */
-declare(strict_types=1);
 
 namespace LogicTree\Node;
 

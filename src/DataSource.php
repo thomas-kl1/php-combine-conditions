@@ -7,19 +7,16 @@ declare(strict_types=1);
 
 namespace LogicTree;
 
+use ArrayAccess;
+use InvalidArgumentException;
+use function is_array;
+
 /**
  * @api
  */
 class DataSource
 {
-    /**
-     * Associative data array by key pair value
-     *
-     * @var array
-     */
-    private $data;
-
-    public function __construct(iterable $data = [])
+    public function __construct(private iterable $data = [])
     {
         $this->setData($data);
     }
@@ -31,6 +28,10 @@ class DataSource
 
     public function setData(iterable $data): DataSource
     {
+        if (!is_array($data) && !($data instanceof ArrayAccess)) {
+            throw new InvalidArgumentException('Data must be an array or implements ArrayAccess.');
+        }
+
         $this->data = [];
 
         foreach ($data as $key => $value) {
