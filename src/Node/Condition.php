@@ -8,25 +8,10 @@ namespace LogicTree\Node;
 
 final class Condition extends AbstractNode implements ConditionInterface
 {
-    /**
-     * @var string
-     */
-    private $operator;
-
-    /**
-     * @var string
-     */
-    private $valueIdentifier;
-
-    /**
-     * @var mixed
-     */
-    private $valueCompare;
-
     public function __construct(
-        string $valueIdentifier,
-        string $operator,
-        $valueCompare
+        private string $valueIdentifier,
+        private string $operator,
+        private mixed $valueCompare
     ) {
         $this->setValueIdentifier($valueIdentifier);
         $this->setOperator($operator);
@@ -59,7 +44,7 @@ final class Condition extends AbstractNode implements ConditionInterface
 
     public function getValueCompare()
     {
-        return $this->valueCompare;
+        return $this->valueCompare;//ToDo: study to be fetched from datasource also?
     }
 
     public function setValueCompare($value): ConditionInterface

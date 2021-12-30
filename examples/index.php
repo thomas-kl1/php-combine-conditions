@@ -11,6 +11,7 @@ use LogicTree\Node\Combine;
 use LogicTree\Node\Condition;
 use LogicTree\Operator\OperatorInterface;
 use LogicTree\Operator\OperatorPool;
+use LogicTree\Operator\OperatorType;
 
 /**
  * Class CustomOperator
@@ -40,7 +41,7 @@ $expr2 = new Condition('value_2', 'custom_op', 10);
 $logicTree = new Combine('and', false, [$expr1, $expr2]);
 
 // Add new operator
-$logicTreeFacade->addOperator(OperatorPool::TYPE_COMPARATOR, 'custom_op', new CustomOperator());
+$logicTreeFacade->addOperator(OperatorType::Comparator, 'custom_op', new CustomOperator());
 
 // Execute combine conditions
 var_dump($logicTreeFacade->executeCombineConditions($logicTree, $dataSource));

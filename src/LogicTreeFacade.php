@@ -1,32 +1,31 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Copyright © Thomas Klein, All rights reserved.
  * See LICENSE bundled with this library for license details.
  */
-declare(strict_types=1);
 
 namespace LogicTree;
 
 use LogicTree\Node\NodeInterface;
 use LogicTree\Operator\OperatorInterface;
 use LogicTree\Operator\OperatorPool;
+use LogicTree\Operator\OperatorType;
 use LogicTree\Service\ConditionManager;
 
 class LogicTreeFacade
 {
-    private ConditionManager $conditionManager;
-
-    private OperatorPool $operatorPool;
-
-    public function __construct(?ConditionManager $conditionManager = null, ?OperatorPool $operatorPool = null)
-    {
+    public function __construct(
+        private ?ConditionManager $conditionManager = null,
+        private ?OperatorPool $operatorPool = null
+    ) {
         $this->operatorPool = $operatorPool ?? new OperatorPool();
         $this->conditionManager = $conditionManager ?? new ConditionManager($this->operatorPool);
     }
 
-    public function addOperator(string $type, string $operatorCode, OperatorInterface $operator): LogicTreeFacade
+    public function addOperator(OperatorType $type, string $operatorCode, OperatorInterface $operator): LogicTreeFacade
     {
         $this->operatorPool->addOperator($type, $operatorCode, $operator);
+
         return $this;
     }
 

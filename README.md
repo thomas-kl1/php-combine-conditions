@@ -39,17 +39,6 @@ This package is available through Composer/Packagist:
 composer require tklein/php-combine-conditions
 ```
 
-### Manual
-
-[Download](https://github.com/thomas-kl1/php-combine-conditions/zipball/master) this repo,
-or the [latest release](https://github.com/thomas-kl1/php-combine-conditions/releases),
-and put it somewhere in your project. Then do the following where you want to use the library:
-
-```php
-<?php
-require_once __DIR__.'/<path_where_it_has_been_extracted>/autoloader.php';
-```
-
 ## Getting Started
 
 The combine conditions library for PHP is a tool which helps you to build dynamically structured (as tree or graph) conditions.  
@@ -63,12 +52,12 @@ The library has been written in order to allows you to implement it to the right
 interfaces from the public API, you can build your own combine conditions structure and continue to execute it via the public
 API services.
 
-The library is written to follow the PSR1/PSR2 coding standards.
+The library is written to follow the PSR12 coding standards.
 
 ### Main Library Entrance
 
 For a simply use, you'll only need to use the following class: `\LogicTree\LogicTreeFacade`.  
-This class allows you to use the mainly features of the library, as to build a combined conditions, to execute somes, and
+This class allows you to use the mainly features of the library, as to build a combined conditions, to execute some, and
 exports them.
 
 ### OperatorPool
@@ -113,24 +102,24 @@ The library allows you to override the default operators and/or to provide new o
 $operatorPool = new \LogicTree\Operator\OperatorPool();
   
 $operatorPool->addOperator(
-    \LogicTree\Operator\OperatorPool::TYPE_LOGICAL,
+    \LogicTree\Operator\OperatorType::Logical,
     \LogicTree\Operator\Logical\AndOperator::CODE,
     new \My\Class\AndOperator()
 );
 $operatorPool->addOperator(
-    \LogicTree\Operator\OperatorPool::TYPE_COMPARATOR,
+    \LogicTree\Operator\OperatorType::Comparator,
     \LogicTree\Operator\Comparator\EqOperator::CODE,
     new \My\Class\EqOperator()
 );
 $operatorPool->addOperator(
-    \LogicTree\Operator\OperatorPool::TYPE_COMPARATOR,
+    \LogicTree\Operator\OperatorType::Comparator,
     'my_custom_operator',
     new \My\Class\MyCustomOperator()
 );
   
 $conditionManager = new \LogicTree\Service\ConditionManager($operatorPool);
 ```
-Now we are able to use these operators in our code and are availables everywhere in the library.
+Now we are able to use these operators in our code and are available everywhere in the library.
 
 ### Condition and Combine
 

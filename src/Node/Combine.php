@@ -14,17 +14,12 @@ final class Combine extends AbstractNode implements CombineInterface
     /**
      * @var NodeInterface[]
      */
-    private array $nodes;
+    private array $nodes = [];
 
-    /**
-     * @param string $operator
-     * @param bool $isInvert [optional] Is false by default.
-     * @param NodeInterface[] $children [optional] Is empty by default.
-     */
     public function __construct(
         private string $operator,
         private bool $isInvert = false,
-        private array $children = []
+        array $children = []
     ) {
         $this->setOperator($operator);
         $this->setIsInvert($isInvert);

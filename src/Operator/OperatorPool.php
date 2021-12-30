@@ -42,43 +42,41 @@ final class OperatorPool
     public const TYPE_COMPARATOR = 'comparator';
 
     /**
-     * Default operators code and class name listed by types
-     *
-     * @var array
-     */
-    private const DEFAULT_OPERATORS = [
-        OperatorPool::TYPE_COMPARATOR => [
-            EmptyOperator::CODE => EmptyOperator::class,
-            EqOperator::CODE => EqOperator::class,
-            GteqOperator::CODE => GteqOperator::class,
-            GtOperator::CODE => GtOperator::class,
-            IdenOperator::CODE => IdenOperator::class,
-            InIdenOperator::CODE => InIdenOperator::class,
-            InOperator::CODE => InOperator::class,
-            LteqOperator::CODE => LteqOperator::class,
-            LtOperator::CODE => LtOperator::class,
-            NeqOperator::CODE => NeqOperator::class,
-            NidenOperator::CODE => NidenOperator::class,
-            NinIdenOperator::CODE => NinIdenOperator::class,
-            NinOperator::CODE => NinOperator::class,
-            NotNullOperator::CODE => NotNullOperator::class,
-            NullOperator::CODE => NullOperator::class,
-            RegexpOperator::CODE => RegexpOperator::class,
-        ],
-        OperatorPool::TYPE_LOGICAL => [
-            AndOperator::CODE => AndOperator::class,
-            OrOperator::CODE => OrOperator::class,
-            XorOperator::CODE => XorOperator::class,
-            NandOperator::CODE => NandOperator::class,
-            NorOperator::CODE => NorOperator::class,
-            XnorOperator::CODE => XnorOperator::class,
-        ],
-    ];
-
-    /**
      * @var array[\LogicTree\Operator\OperatorInterface[]]
      */
-    private $operators = [];
+    private array $operators = [];
+
+    public static function defaultOperators(): array
+    {
+        return [
+            OperatorType::Comparator->value => [
+                EmptyOperator::CODE => EmptyOperator::class,
+                EqOperator::CODE => EqOperator::class,
+                GteqOperator::CODE => GteqOperator::class,
+                GtOperator::CODE => GtOperator::class,
+                IdenOperator::CODE => IdenOperator::class,
+                InIdenOperator::CODE => InIdenOperator::class,
+                InOperator::CODE => InOperator::class,
+                LteqOperator::CODE => LteqOperator::class,
+                LtOperator::CODE => LtOperator::class,
+                NeqOperator::CODE => NeqOperator::class,
+                NidenOperator::CODE => NidenOperator::class,
+                NinIdenOperator::CODE => NinIdenOperator::class,
+                NinOperator::CODE => NinOperator::class,
+                NotNullOperator::CODE => NotNullOperator::class,
+                NullOperator::CODE => NullOperator::class,
+                RegexpOperator::CODE => RegexpOperator::class,
+            ],
+            OperatorType::Logical->value => [
+                AndOperator::CODE => AndOperator::class,
+                OrOperator::CODE => OrOperator::class,
+                XorOperator::CODE => XorOperator::class,
+                NandOperator::CODE => NandOperator::class,
+                NorOperator::CODE => NorOperator::class,
+                XnorOperator::CODE => XnorOperator::class,
+            ],
+        ];
+    }
 
     public function __construct(array $operators = [])
     {
@@ -86,41 +84,30 @@ final class OperatorPool
 
         foreach ($typeOperators as $type => $operatorList) {
             foreach ($operatorList as $operatorCode => $operator) {
-                $this->addOperator($type, $operatorCode, $operator);
+                $this->addOperator(OperatorType::from($type), $operatorCode, $operator);
             }
         }
     }
 
-    public function getOperator(string $type, string $operatorCode): OperatorInterface
+    public function getOperator(OperatorType $type, string $operatorCode): OperatorInterface
     {
-        if (!isset($this->operators[$type][$operatorCode])) {
-            throw new LogicException(
-                sprintf('No registered operator for the type "%s" and code "%s".', $type, $operatorCode)
-            );
-        }
-
-        return $this->operators[$type][$operatorCode];
+        return $this->operators[$type->value][$operatorCode] ?? throw new LogicException(
+            sprintf('No registered operator for the type "%s" and code "%s".', $type, $operatorCode)
+        );
     }
 
-    public function addOperator(string $type, string $operatorCode, OperatorInterface $operator): OperatorPool
+    public function addOperator(OperatorType $type, string $operatorCode, OperatorInterface $operator): OperatorPool
     {
-        if (!isset($this->operators[$type][$operatorCode])) {
-            if (!isset($this->operators[$type])) {
-                $this->operators[$type] = [];
-            }
-
-            $this->operators[$type][$operatorCode] = $operator;
-        }
+        $this->operators[$type->value][$operatorCode] = $operator;
 
         return $this;
     }
 
     private function retrieveDefaultOperators(): array
     {
-        return array_map(static function ($operators) {
-            return array_map(static function ($operator) {
-                return new $operator();
-            }, $operators);
-        }, self::DEFAULT_OPERATORS);
+        return array_map(
+            static fn ($operators) => array_map(static fn ($operator) => new $operator(), $operators),
+            static::defaultOperators()
+        );
     }
 }

@@ -1,9 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Copyright © Thomas Klein, All rights reserved.
  * See LICENSE bundled with this library for license details.
  */
-declare(strict_types=1);
 
 namespace LogicTree\Service;
 
@@ -11,47 +10,45 @@ use LogicTree\DataSource;
 use LogicTree\Node\CombineInterface;
 use LogicTree\Node\ConditionInterface;
 use LogicTree\Node\NodeInterface;
+use LogicTree\Operator\OperatorInterface;
 use LogicTree\Operator\OperatorPool;
+use LogicTree\Operator\OperatorType;
+
+use function array_map;
 
 /**
  * @api
  */
 class ConditionManager
 {
-    public function __construct(private ?OperatorPool $operatorPool = null)
-    {
-        $this->operatorPool = $operatorPool ?? new OperatorPool();
-    }
+    public function __construct(private OperatorPool $operatorPool) {}
 
     public function execute(NodeInterface $node, DataSource $dataSource): bool
     {
-        $result = true;
-
-        if ($node instanceof CombineInterface) {
-            $result = $this->executeCombine($node, $dataSource);
-        } elseif ($node instanceof ConditionInterface) {
-            $result = $this->executeCondition($node, $dataSource->getValue($node->getValueIdentifier()));
-        }
-
-        return $result;
+        return match (true) {
+            $node instanceof CombineInterface => $this->executeCombine($node, $dataSource),
+            $node instanceof ConditionInterface => $this->executeCondition($node, $dataSource),
+            default => true
+        };
     }
 
     private function executeCombine(CombineInterface $combine, DataSource $dataSource): bool
     {
-        $operator = $this->operatorPool->getOperator(OperatorPool::TYPE_LOGICAL, $combine->getOperator());
-        $expressions = [];
-
-        foreach ($combine->getChildren() as $child) {
-            $expressions[] = $this->execute($child, $dataSource);
-        }
-
-        return ($combine->isInvert() xor $operator->execute(...$expressions));
+        return $combine->isInvert() xor $this->resolveOperator(OperatorType::Logical, $combine)->execute(
+            ...array_map(fn (NodeInterface $node) => $this->execute($node, $dataSource), $combine->getChildren())
+        );
     }
 
-    private function executeCondition(ConditionInterface $condition, $value): bool
+    private function executeCondition(ConditionInterface $condition, DataSource $dataSource): bool
     {
-        $operator = $this->operatorPool->getOperator(OperatorPool::TYPE_COMPARATOR, $condition->getOperator());
+        return $this->resolveOperator(OperatorType::Comparator, $condition)->execute(
+            $dataSource->getValue($condition->getValueIdentifier()),
+            $condition->getValueCompare()
+        );
+    }
 
-        return $operator->execute($value, $condition->getValueCompare());
+    private function resolveOperator(OperatorType $type, NodeInterface $node): OperatorInterface
+    {
+        return $this->operatorPool->getOperator($type, $node->getOperator());
     }
 }
