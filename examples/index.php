@@ -47,7 +47,10 @@ $dataSource = $logicTreeFacade->createDataSource(['value_1' => 'toto', 'value_2'
 
 $expr1 = new Condition('value_1', 'eq', 'toto');
 $expr2 = new Condition('value_2', 'custom_op', 10);
-$logicTree = new Combine('and', false, [$expr1, $expr2]);
+$exprA = new Condition('value_1', 'regexp', '/^[A-Z]+/');
+$exprB = new Condition('value_2', 'custom_op', 10);
+$combA = new Combine('xor', true, [$exprA, $exprB]);
+$logicTree = new Combine('and', false, [$expr1, $expr2, $combA]);
 
 // Add new operator
 $logicTreeFacade->addOperator(OperatorType::Comparator, 'custom_op', new CustomOperator());
