@@ -7,6 +7,8 @@ namespace LogicTree\Node;
 
 /**
  * @api
+ * Todo: This interface only provide common base to combine and condition.
+ *       We should use union type in signature instead.
  */
 interface NodeInterface
 {
