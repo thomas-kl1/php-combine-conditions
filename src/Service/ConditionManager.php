@@ -28,7 +28,7 @@ class ConditionManager
         return match (true) {
             $node instanceof CombineInterface => $this->executeCombine($node, $dataSource),
             $node instanceof ConditionInterface => $this->executeCondition($node, $dataSource),
-            default => true
+            default => throw new \Exception()//todo
         };
     }
 
