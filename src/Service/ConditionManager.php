@@ -23,12 +23,11 @@ class ConditionManager
 {
     public function __construct(private OperatorPool $operatorPool) {}
 
-    public function execute(NodeInterface $node, DataSource $dataSource): bool
+    public function execute(CombineInterface|ConditionInterface $node, DataSource $dataSource): bool
     {
         return match (true) {
             $node instanceof CombineInterface => $this->executeCombine($node, $dataSource),
-            $node instanceof ConditionInterface => $this->executeCondition($node, $dataSource),
-            default => throw new \Exception()//todo
+            $node instanceof ConditionInterface => $this->executeCondition($node, $dataSource)
         };
     }
 
