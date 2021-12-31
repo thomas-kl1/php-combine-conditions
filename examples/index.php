@@ -6,11 +6,12 @@
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
+use LogicTree\Formatter\ConverterInterface;
+use LogicTree\Formatter\NaturalFormatter;
 use LogicTree\LogicTreeFacade;
 use LogicTree\Node\Combine;
 use LogicTree\Node\Condition;
 use LogicTree\Operator\OperatorInterface;
-use LogicTree\Operator\OperatorPool;
 use LogicTree\Operator\OperatorType;
 
 /**
@@ -26,6 +27,14 @@ class CustomOperator implements OperatorInterface
     public function execute(...$expressions): bool
     {
         return array_sum($expressions) > 5;
+    }
+}
+
+class CustomOpConverter implements  ConverterInterface
+{
+    public function convert(...$expressions): string
+    {
+        return 'SUM(' . implode(', ', $expressions) . ') > 5';
     }
 }
 
@@ -45,3 +54,8 @@ $logicTreeFacade->addOperator(OperatorType::Comparator, 'custom_op', new CustomO
 
 // Execute combine conditions
 var_dump($logicTreeFacade->executeCombineConditions($logicTree, $dataSource));
+
+$formatter = new NaturalFormatter();
+$formatter->register('custom_op', new CustomOpConverter());
+echo '<hr>';
+echo $formatter->format($logicTree, $dataSource);

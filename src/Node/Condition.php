@@ -42,12 +42,12 @@ final class Condition extends AbstractNode implements ConditionInterface
         return $this;
     }
 
-    public function getValueCompare()
+    public function getValueCompare(): mixed
     {
         return $this->valueCompare;//ToDo: study to be fetched from datasource also?
     }
 
-    public function setValueCompare($value): ConditionInterface
+    public function setValueCompare(mixed $value): ConditionInterface
     {
         $this->valueCompare = $value;
 

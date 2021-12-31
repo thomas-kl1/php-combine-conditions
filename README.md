@@ -98,12 +98,13 @@ The library allows you to override the default operators and/or to provide new o
 - Finally, pass the `OperatorPool` object in the construct of the `ConditionManager` class.
 
 *Eg: In the following example, we override the default comparators with ours and add a new one.*
+
 ```php
 $operatorPool = new \LogicTree\Operator\OperatorPool();
   
 $operatorPool->addOperator(
     \LogicTree\Operator\OperatorType::Logical,
-    \LogicTree\Operator\Logical\AndOperator::CODE,
+    \LogicTree\Operator\Logical\LogicalOperatorConverter::CODE,
     new \My\Class\AndOperator()
 );
 $operatorPool->addOperator(
