@@ -45,5 +45,8 @@
         "psr-4": {
             "LogicTree\\Test\\": "tests/"
         }
+    },
+    "archive": {
+        "exclude": ["composer.lock"]
     }
 }
