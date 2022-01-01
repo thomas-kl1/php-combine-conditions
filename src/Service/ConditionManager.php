@@ -34,7 +34,10 @@ class ConditionManager
     private function executeCombine(CombineInterface $combine, DataSource $dataSource): bool
     {
         return $combine->isInvert() xor $this->resolveOperator(OperatorType::Logical, $combine)->execute(
-            ...array_map(fn (NodeInterface $node) => $this->execute($node, $dataSource), $combine->getChildren())
+            ...array_map(
+                fn (CombineInterface|ConditionInterface $node) => $this->execute($node, $dataSource),
+                $combine->getChildren()
+            )
         );
     }
 

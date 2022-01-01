@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 /**
- * Copyright © Thomas Klein, All right reserved.
+ * Copyright © Thomas Klein, All rights reserved.
+ * See LICENSE bundled with this library for license details.
  */
 
 namespace LogicTree\Node;
@@ -22,14 +23,12 @@ interface CombineInterface extends NodeInterface
      *
      * @param NodeInterface[] $children
      */
-    public function setChildren(array $children): CombineInterface;
+    public function setChildren(array $children): void;
 
     /**
      * Add a logic structure as condition or combination
-     *
-     * @param NodeInterface $node
      */
-    public function addChild(NodeInterface $node): CombineInterface;
+    public function addChild(CombineInterface|ConditionInterface $node): void;
 
     /**
      * Retrieve the count of children nodes
@@ -46,5 +45,5 @@ interface CombineInterface extends NodeInterface
     /**
      * Set is result of combination inverted
      */
-    public function setIsInvert(bool $isInvert): CombineInterface;
+    public function setIsInvert(bool $isInvert): void;
 }

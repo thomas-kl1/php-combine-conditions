@@ -13,7 +13,6 @@ use LogicTree\Formatter\Natural\Comparator\CompareTwoConverter;
 use LogicTree\Formatter\Natural\Logical\LogicalOperatorConverter;
 use LogicTree\Node\CombineInterface;
 use LogicTree\Node\ConditionInterface;
-use LogicTree\Node\NodeInterface;
 
 use function array_map;
 
@@ -55,19 +54,21 @@ final class NaturalFormatter implements FormatterInterface
         $this->converters[$operator] = $converter;
     }
 
-    public function format(NodeInterface $node, DataSource $dataSource): string
+    public function format(CombineInterface|ConditionInterface $node, DataSource $dataSource): string
     {
         return match (true) {
             $node instanceof CombineInterface => $this->formatCombine($node, $dataSource),
-            $node instanceof ConditionInterface => $this->formatCondition($node, $dataSource),
-            default => throw new \Exception()//ToDo
+            $node instanceof ConditionInterface => $this->formatCondition($node, $dataSource)
         };
     }
 
     private function formatCombine(CombineInterface $combine, DataSource $dataSource): string
     {
         return ($combine->isInvert() ? 'NOT ' : '') . $this->converters[$combine->getOperator()]->convert(
-            ...array_map(fn (NodeInterface $node) => $this->format($node, $dataSource), $combine->getChildren())
+            ...array_map(
+                fn (CombineInterface|ConditionInterface $node) => $this->format($node, $dataSource),
+                $combine->getChildren()
+            )
         );
     }
 

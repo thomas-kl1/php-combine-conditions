@@ -7,6 +7,7 @@
 namespace LogicTree\Node;
 
 use LogicException;
+
 use function count;
 
 final class Combine extends AbstractNode implements CombineInterface
@@ -31,18 +32,16 @@ final class Combine extends AbstractNode implements CombineInterface
         return $this->nodes;
     }
 
-    public function setChildren(array $children): CombineInterface
+    public function setChildren(array $children): void
     {
         $this->nodes = [];
 
         foreach ($children as $child) {
             $this->addChild($child);
         }
-
-        return $this;
     }
 
-    public function addChild(NodeInterface $condition): CombineInterface
+    public function addChild(CombineInterface|ConditionInterface $condition): void
     {
         if ($condition === $this) {
             throw new LogicException('Child node cannot be the current instance of itself.');
@@ -50,8 +49,6 @@ final class Combine extends AbstractNode implements CombineInterface
 
         $condition->setParent($this);
         $this->nodes[] = $condition;
-
-        return $this;
     }
 
     public function getCount(): int
@@ -69,11 +66,9 @@ final class Combine extends AbstractNode implements CombineInterface
         return $this->isInvert;
     }
 
-    public function setIsInvert(bool $isInvert): CombineInterface
+    public function setIsInvert(bool $isInvert): void
     {
         $this->isInvert = $isInvert;
-
-        return $this;
     }
 
     public function getOperator(): string
@@ -81,10 +76,8 @@ final class Combine extends AbstractNode implements CombineInterface
         return $this->operator;
     }
 
-    public function setOperator(string $operator): CombineInterface
+    public function setOperator(string $operator): void
     {
         $this->operator = $operator;
-
-        return $this;
     }
 }

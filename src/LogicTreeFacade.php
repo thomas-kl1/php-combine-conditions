@@ -6,7 +6,8 @@
 
 namespace LogicTree;
 
-use LogicTree\Node\NodeInterface;
+use LogicTree\Node\CombineInterface;
+use LogicTree\Node\ConditionInterface;
 use LogicTree\Operator\OperatorInterface;
 use LogicTree\Operator\OperatorPool;
 use LogicTree\Operator\OperatorType;
@@ -22,11 +23,9 @@ class LogicTreeFacade
         $this->conditionManager = $conditionManager ?? new ConditionManager($this->operatorPool);
     }
 
-    public function addOperator(OperatorType $type, string $operatorCode, OperatorInterface $operator): LogicTreeFacade
+    public function addOperator(OperatorType $type, string $operatorCode, OperatorInterface $operator): void
     {
         $this->operatorPool->addOperator($type, $operatorCode, $operator);
-
-        return $this;
     }
 
     public function createDataSource(iterable $data): DataSource
@@ -34,7 +33,7 @@ class LogicTreeFacade
         return new DataSource($data);
     }
 
-    public function executeCombineConditions(NodeInterface $node, DataSource $dataSource): bool
+    public function executeCombineConditions(CombineInterface|ConditionInterface $node, DataSource $dataSource): bool
     {
         return $this->conditionManager->execute($node, $dataSource);
     }

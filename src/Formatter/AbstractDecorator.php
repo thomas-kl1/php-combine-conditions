@@ -7,7 +7,8 @@
 namespace LogicTree\Formatter;
 
 use LogicTree\DataSource;
-use LogicTree\Node\NodeInterface;
+use LogicTree\Node\CombineInterface;
+use LogicTree\Node\ConditionInterface;
 
 /**
  * @api
@@ -18,7 +19,7 @@ abstract class AbstractDecorator implements FormatterInterface
 
     abstract protected function decorate(string $output): string;
 
-    final public function format(NodeInterface $node, DataSource $dataSource): string
+    final public function format(CombineInterface|ConditionInterface $node, DataSource $dataSource): string
     {
         return $this->decorate($this->formatter->format($node, $dataSource));
     }

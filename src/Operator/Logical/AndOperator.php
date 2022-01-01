@@ -7,6 +7,7 @@
 namespace LogicTree\Operator\Logical;
 
 use LogicTree\Operator\OperatorInterface;
+
 use function count;
 
 /**

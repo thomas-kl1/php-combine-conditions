@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 /**
- * Copyright © OpenGento, All rights reserved.
+ * Copyright © Thomas Klein, All rights reserved.
+ * See LICENSE bundled with this library for license details.
  */
 
 namespace LogicTree\Operator;

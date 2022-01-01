@@ -7,14 +7,15 @@
 namespace LogicTree\Formatter;
 
 use LogicTree\DataSource;
-use LogicTree\Node\NodeInterface;
+use LogicTree\Node\CombineInterface;
+use LogicTree\Node\ConditionInterface;
 
 /**
  * @api
  */
 interface FormatterInterface
 {
-    public function format(NodeInterface $node, DataSource $dataSource): string;
+    public function format(CombineInterface|ConditionInterface $node, DataSource $dataSource): string;
 
     public function register(string $operator, ConverterInterface $converter): void;
 }

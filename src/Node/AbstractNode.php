@@ -15,11 +15,9 @@ abstract class AbstractNode implements NodeInterface
         return $this->parent;
     }
 
-    public function setParent(?CombineInterface $combine): NodeInterface
+    public function setParent(?CombineInterface $combine): void
     {
         $this->parent = $combine;
-
-        return $this;
     }
 
     public function hasParent(): bool

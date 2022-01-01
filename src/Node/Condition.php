@@ -23,11 +23,9 @@ final class Condition extends AbstractNode implements ConditionInterface
         return $this->operator;
     }
 
-    public function setOperator(string $operator): ConditionInterface
+    public function setOperator(string $operator): void
     {
         $this->operator = $operator;
-
-        return $this;
     }
 
     public function getValueIdentifier(): string
@@ -35,11 +33,9 @@ final class Condition extends AbstractNode implements ConditionInterface
         return $this->valueIdentifier;
     }
 
-    public function setValueIdentifier(string $identifier): ConditionInterface
+    public function setValueIdentifier(string $identifier): void
     {
         $this->valueIdentifier = $identifier;
-
-        return $this;
     }
 
     public function getValueCompare(): mixed
@@ -47,10 +43,8 @@ final class Condition extends AbstractNode implements ConditionInterface
         return $this->valueCompare;//ToDo: study to be fetched from datasource also?
     }
 
-    public function setValueCompare(mixed $value): ConditionInterface
+    public function setValueCompare(mixed $value): void
     {
         $this->valueCompare = $value;
-
-        return $this;
     }
 }

@@ -1,24 +1,23 @@
 <?php declare(strict_types=1);
 /**
- * Copyright © Thomas Klein, All right reserved.
+ * Copyright © Thomas Klein, All rights reserved.
+ * See LICENSE bundled with this library for license details.
  */
 
 namespace LogicTree\Node;
 
 /**
  * @api
- * Todo: This interface only provide common base to combine and condition.
- *       We should use union type in signature instead.
  */
 interface NodeInterface
 {
     public function getOperator(): string;
 
-    public function setOperator(string $operator): NodeInterface;
+    public function setOperator(string $operator): void;
 
     public function getParent(): ?CombineInterface;
 
-    public function setParent(?CombineInterface $condition): NodeInterface;
+    public function setParent(?CombineInterface $condition): void;
 
     public function hasParent(): bool;
 }

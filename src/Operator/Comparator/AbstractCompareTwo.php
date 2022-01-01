@@ -8,6 +8,7 @@ namespace LogicTree\Operator\Comparator;
 
 use InvalidArgumentException;
 use LogicTree\Operator\OperatorInterface;
+
 use function count;
 
 abstract class AbstractCompareTwo implements OperatorInterface

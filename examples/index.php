@@ -24,7 +24,7 @@ class CustomOperator implements OperatorInterface
     /**
      * {@inheritdoc}
      */
-    public function execute(...$expressions): bool
+    public function execute(mixed ...$expressions): bool
     {
         return array_sum($expressions) > 5;
     }
@@ -32,7 +32,7 @@ class CustomOperator implements OperatorInterface
 
 class CustomOpConverter implements  ConverterInterface
 {
-    public function convert(...$expressions): string
+    public function convert(mixed ...$expressions): string
     {
         return 'SUM(' . implode(', ', $expressions) . ') > 5';
     }

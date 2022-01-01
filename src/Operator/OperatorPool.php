@@ -29,6 +29,7 @@ use LogicTree\Operator\Logical\NorOperator;
 use LogicTree\Operator\Logical\OrOperator;
 use LogicTree\Operator\Logical\XnorOperator;
 use LogicTree\Operator\Logical\XorOperator;
+
 use function array_map;
 use function array_merge_recursive;
 use function sprintf;
