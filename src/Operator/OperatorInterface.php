@@ -11,5 +11,11 @@ namespace LogicTree\Operator;
  */
 interface OperatorInterface
 {
+    /**
+     * Execute operator for the expressions
+     *
+     * @param mixed ...$expressions
+     * @return bool
+     */
     public function execute(mixed ...$expressions): bool;
 }

@@ -32,23 +32,27 @@ final class Combine extends AbstractNode implements CombineInterface
         return $this->nodes;
     }
 
-    public function setChildren(array $children): void
+    public function setChildren(array $children): static
     {
         $this->nodes = [];
 
         foreach ($children as $child) {
             $this->addChild($child);
         }
+
+        return $this;
     }
 
-    public function addChild(CombineInterface|ConditionInterface $condition): void
+    public function addChild(NodeInterface $node): static
     {
-        if ($condition === $this) {
+        if ($node === $this) {
             throw new LogicException('Child node cannot be the current instance of itself.');
         }
 
-        $condition->setParent($this);
-        $this->nodes[] = $condition;
+        $node->setParent($this);
+        $this->nodes[] = $node;
+
+        return $this;
     }
 
     public function getCount(): int
@@ -66,9 +70,11 @@ final class Combine extends AbstractNode implements CombineInterface
         return $this->isInvert;
     }
 
-    public function setIsInvert(bool $isInvert): void
+    public function setIsInvert(bool $isInvert): static
     {
         $this->isInvert = $isInvert;
+
+        return $this;
     }
 
     public function getOperator(): string
@@ -76,8 +82,10 @@ final class Combine extends AbstractNode implements CombineInterface
         return $this->operator;
     }
 
-    public function setOperator(string $operator): void
+    public function setOperator(string $operator): static
     {
         $this->operator = $operator;
+
+        return $this;
     }
 }
