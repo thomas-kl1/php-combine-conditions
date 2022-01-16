@@ -25,9 +25,9 @@ class LogicTreeFacadeTest extends TestCase
         $expr2 = new Condition('value_2', 'gt', 5); // true
         $exprA = new Condition('value_1', 'regexp', '/^[A-Z]+/'); // true
         $exprB = new Condition('value_2', 'lt', 1); // false
-        $combA = new Combine('or', true, [$exprA, $exprB]); // true OR false
+        $combA = new Combine('or', false, [$exprA, $exprB]); // true OR false
         $logicTree = new Combine('and', false, [$expr1, $expr2, $combA]); // true AND true AND true
 
-        $this->assertTrue($logicTreeFacade->executeCombineConditions($logicTree, $dataSource));
+        $this->assertTrue($logicTreeFacade->executeCombineConditions($logicTree, $dataSource)->isMatched());
     }
 }

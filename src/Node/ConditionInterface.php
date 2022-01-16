@@ -11,11 +11,66 @@ namespace LogicTree\Node;
  */
 interface ConditionInterface extends NodeInterface
 {
-    public function getValueIdentifier(): string;
+    /**
+     * Retrieve the first value key identifier to compare
+     *
+     * @return ?string
+     */
+    public function getFirstValueIdentifier(): ?string;
 
-    public function setValueIdentifier(string $identifier): void;
+    /**
+     * Set the first value key identifier to compare
+     *
+     * @param ?string $identifier
+     * @return self
+     */
+    public function setFirstValueIdentifier(?string $identifier): static;
 
-    public function getValueCompare(): mixed;
+    /**
+     * Retrieve the first value to compare
+     *
+     * @return mixed
+     */
+    public function getFirstValue(): mixed;
 
-    public function setValueCompare(mixed $value): void;
+    /**
+     * Set the first value to compare
+     *
+     * @param mixed $value
+     * @return self
+     */
+    public function setFirstValue(mixed $value): static;
+
+
+    /**
+     * Retrieve the second value key identifier to compare
+     *
+     * @return ?string
+     */
+    public function getSecondValueIdentifier(): ?string;
+
+    /**
+     * Set the second value key identifier to compare
+     *
+     * @param string $identifier
+     * @return self
+     */
+    public function setSecondValueIdentifier(string $identifier): static;
+
+    /**
+     * Retrieve the second value to compare
+     *
+     * @return mixed
+     */
+    public function getSecondValue(): mixed;
+
+    /**
+     * Set the second value to compare
+     *
+     * @param mixed $value
+     * @return self
+     */
+    public function setSecondValue(mixed $value): static;
+
+
 }

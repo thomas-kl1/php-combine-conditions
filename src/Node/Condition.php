@@ -9,13 +9,17 @@ namespace LogicTree\Node;
 final class Condition extends AbstractNode implements ConditionInterface
 {
     public function __construct(
-        private string $valueIdentifier,
+        private ?string $firstValueIdentifier,
         private string $operator,
-        private mixed $valueCompare
+        private mixed $secondValue = null,
+        private mixed $firstValue = null,
+        private ?string $secondValueIdentifier = null,
     ) {
-        $this->setValueIdentifier($valueIdentifier);
+        $this->setFirstValueIdentifier($firstValueIdentifier);
+        $this->setFirstValue($firstValue);
         $this->setOperator($operator);
-        $this->setValueCompare($valueCompare);
+        $this->setSecondValueIdentifier($secondValueIdentifier);
+        $this->setSecondValue($secondValue);
     }
 
     public function getOperator(): string
@@ -23,28 +27,82 @@ final class Condition extends AbstractNode implements ConditionInterface
         return $this->operator;
     }
 
-    public function setOperator(string $operator): void
+    public function setOperator(string $operator): static
     {
         $this->operator = $operator;
+
+        return $this;
     }
 
-    public function getValueIdentifier(): string
+    /**
+     * @return string|null
+     */
+    public function getFirstValueIdentifier(): ?string
     {
-        return $this->valueIdentifier;
+        return $this->firstValueIdentifier;
     }
 
-    public function setValueIdentifier(string $identifier): void
+    /**
+     * @param string|null $identifier
+     * @return $this
+     */
+    public function setFirstValueIdentifier(?string $identifier): static
     {
-        $this->valueIdentifier = $identifier;
+        $this->firstValueIdentifier = $identifier;
+        return $this;
     }
 
-    public function getValueCompare(): mixed
+    /**
+     * @return mixed
+     */
+    public function getFirstValue(): mixed
     {
-        return $this->valueCompare;//ToDo: study to be fetched from datasource also?
+        return $this->firstValue;
     }
 
-    public function setValueCompare(mixed $value): void
+    /**
+     * @param mixed $value
+     * @return $this
+     */
+    public function setFirstValue(mixed $value): static
     {
-        $this->valueCompare = $value;
+        $this->firstValue = $value;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSecondValueIdentifier(): ?string
+    {
+        return $this->secondValueIdentifier;
+    }
+
+    /**
+     * @param ?string $identifier
+     * @return $this
+     */
+    public function setSecondValueIdentifier(?string $identifier): static
+    {
+        $this->secondValueIdentifier = $identifier;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSecondValue(): mixed
+    {
+        return $this->secondValue;
+    }
+
+    /**
+     * @param mixed $value
+     * @return $this
+     */
+    public function setSecondValue(mixed $value): static
+    {
+        $this->secondValue = $value;
+        return $this;
     }
 }

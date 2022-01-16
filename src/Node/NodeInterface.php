@@ -11,13 +11,40 @@ namespace LogicTree\Node;
  */
 interface NodeInterface
 {
+    /**
+     * Retrieve the operator
+     *
+     * @return string
+     */
     public function getOperator(): string;
 
-    public function setOperator(string $operator): void;
+    /**
+     * Set the operator
+     *
+     * @param string $operator
+     * @return self
+     */
+    public function setOperator(string $operator): static;
 
+    /**
+     * Retrieve the parent combine
+     *
+     * @return CombineInterface|null
+     */
     public function getParent(): ?CombineInterface;
 
-    public function setParent(?CombineInterface $condition): void;
+    /**
+     * Set the parent combine
+     *
+     * @param CombineInterface|null $combine
+     * @return self
+     */
+    public function setParent(?CombineInterface $combine): static;
 
+    /**
+     * Check if it has an existing parent
+     *
+     * @return bool
+     */
     public function hasParent(): bool;
 }
