@@ -18,6 +18,6 @@ final class RegexpOperator extends AbstractCompareTwo
 
     public function executeComparison(mixed $expr1, mixed $expr2): bool
     {
-        return preg_match($expr2, $expr1) !== false;
+        return preg_match($expr2, $expr1) === 1;
     }
 }
